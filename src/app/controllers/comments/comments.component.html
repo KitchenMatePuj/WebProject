@@ -1,0 +1,36 @@
+<div class="comments-container">
+    <nav class="sidebar">
+      <div class="profile" (click)="goToProfile()">
+        <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+        <span class="profile-name">Admin</span>
+      </div>
+  
+      <div class="menu-container">
+        <ul>
+
+          <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Dashboard</a></li>
+          <li><a (click)="goToAllUsers()"><img class="sidebar-icon" src="assets/icons/users-icon.png">Usuarios</a></li>
+          <li><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Recetas</a></li>
+          <li><a routerLink="/comments"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Administración</a></li>
+          <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+  
+      <div class="version-info">
+        <p>KitchenMate</p> 
+        <p>Versión 1.0.0.11</p>
+      </div>
+    </nav>
+  
+    <main class="content">
+      <div class="top-bar">
+        <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+      </div>
+ 
+      <div class="search_comments-container">
+        <div class="tabs">
+        <button class="tab" [ngClass]="{'active': isSearchActive}">Encontrar comentarios</button>
+        <button class="tab" (click)="goToAllComments()" [ngClass]="{'active': !isSearchActive}">Todos los comentarios</button>
+        </div>
+        </div>
+    

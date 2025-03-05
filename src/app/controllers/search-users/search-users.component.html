@@ -1,0 +1,107 @@
+<div class="dashboard-container">
+    <nav class="sidebar">
+      <div class="profile" (click)="goToProfile()">
+        <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+        <span class="profile-name">Admin</span>
+      </div>
+  
+      <div class="menu-container">
+        <ul>
+
+          <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Dashboard</a></li>
+          <li><a (click)="goToAllUsers()"><img class="sidebar-icon" src="assets/icons/users-icon.png">Usuarios</a></li>
+          <li><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Recetas</a></li>
+          <li><a (click)="goToComments()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Administración</a></li>
+          <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+  
+      <div class="version-info">
+        <p>KitchenMate</p> 
+        <p>Versión 1.0.0.11</p>
+      </div>
+    </nav>
+  
+    <main class="content">
+      <div class="top-bar">
+        <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+      </div>
+  
+      <!-- Aquí empieza la sección específica de la búsqueda de usuarios -->
+      <div class="search-users-container">
+        <div class="tabs">
+          <button class="tab" [ngClass]="{'active': isSearchActive}">Encontrar usuarios</button>
+          <button class="tab" (click)="goToAllUsers()" [ngClass]="{'active': !isSearchActive}">Todos los usuarios</button>
+        </div>
+  
+        <!-- Filtros de búsqueda -->
+         <div class="filter-container">
+        <div class="search-filters">
+          <div class="filter-item">
+            <label for="name">Nombre</label>
+            <input id="name" type="text" placeholder="Andrew Salgado">
+          </div>
+  
+          <div class="filter-item">
+            <label for="email">Correo electrónico</label>
+            <input id="email" type="email" placeholder="ejemplo@mail.com">
+          </div>
+
+ 
+          <div class="filter-item">
+            <label for="status">Estado de la Cuenta</label>
+            <select id="status">
+              <option>Activa</option>
+              <option>Inactiva</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="filter-item">
+            <label for="restrictions">Restricciones Alimenticias</label>
+            <select id="restrictions">
+              <option>Vegano</option>
+              <option>Vegetariano</option>
+              <option>Intolerante a la Lactosa</option>
+              <option>Pescatariano</option>
+            </select>
+          </div>
+
+          <div class="filter-item">
+            <label for="user-type">Tipo de Usuario</label>
+            <select id="user-type">
+              <option>Cualquiera</option>
+              <option>Administrador</option>
+              <option>Usuario Regular</option>
+            </select>
+          </div>
+  
+
+        </div>
+  
+
+        <!-- Opciones de selección para mostrar los campos -->
+        <div class="checkbox-options">
+          <div class="checkbox-option">
+            <input type="checkbox" id="show-user-type" checked>
+            <label for="show-user-type">Mostrar Tipo de Usuario</label>
+          </div>
+          <div class="checkbox-option">
+            <input type="checkbox" id="show-last-login">
+            <label for="show-last-login">Mostrar Último Inicio de Sesión</label>
+          </div>
+          <div class="checkbox-option">
+            <input type="checkbox" id="show-status">
+            <label for="show-status">Mostrar Estado de la Cuenta</label>
+          </div>
+        </div>
+  
+        <div class="search-buttons">
+          <button class="clear-button">Limpiar</button>
+          <button class="search-button">Buscar</button>
+        </div>
+      </div>
+    </main>
+  </div>
+  

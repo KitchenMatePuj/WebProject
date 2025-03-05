@@ -1,0 +1,143 @@
+<div class="all_users-container">
+  <nav class="sidebar">
+    <div class="profile" (click)="goToProfile()">
+      <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+      <span class="profile-name">Admin</span>
+    </div>
+
+    <div class="menu-container">
+      <ul>
+        <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Dashboard</a></li>
+        <li><a (click)="goToSearchUsers()"><img class="sidebar-icon" src="assets/icons/users-icon.png">Usuarios</a></li>
+        <li><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Recetas</a></li>
+        <li><a routerLink="/comments"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Administración</a></li>
+        <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+
+    <div class="version-info">
+      <p>KitchenMate</p> 
+      <p>Versión 1.0.0.11</p>
+    </div>
+  </nav>
+
+  <main class="content">
+    <!-- Barra superior con búsqueda y foto de perfil -->
+    <div class="top-bar">
+      <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+    </div>
+
+    <div class="tabs">
+      <button class="tab" (click)="goToSearchUsers()" [ngClass]="{'active': !isSearchActive}">Encontrar usuarios</button>
+      <button class="tab" [ngClass]="{'active': isSearchActive}">Todos los usuarios</button>
+    </div>
+
+    <!-- Contenido principal del componente All Users -->
+    <div class="active-users-container">
+      <h2>Lista Usuarios Activos</h2>
+    
+      <!-- Estadísticas de usuarios -->
+      <div class="users-stats-table">
+          <table>
+            <thead>
+              <tr>
+                  <th>Total Activos</th>  
+                <th>Administrador</th>
+                <th>Moderador</th>
+                <th>Usuario</th>
+                <th>Publicista</th>
+                <th>Estratega de Negocio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>206</td>
+                <td>5</td>
+                <td>10</td>
+                <td>199</td>
+                <td>6</td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+       </div>
+
+              
+      <!-- Filtros -->
+
+<div class="filter-container">
+<h3>Filtros</h3>
+<div class="filters">
+  <div class="filter-item">
+    <label for="permissions">Permisos</label>
+    <select id="permissions">
+      <option>Administrador</option>
+      <option>Moderador</option>
+      <option>Usuario</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label for="status">Estado de la Cuenta</label>
+    <select id="status">
+      <option>Activa</option>
+      <option>Suspendida</option>
+      <option>Pendiente</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label for="restrictions">Restricciones Dietéticas</label>
+    <select id="restrictions">
+      <option>Ninguna</option>
+      <option>Vegano</option>
+      <option>Vegetariano</option>
+    </select>
+  </div>
+</div>
+<button class="filter-button">Filtrar</button>
+</div>
+
+    
+      <!-- Tabla de usuarios -->
+      <div class="users-table">
+        <h3>Encontrados: 254</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre Completo</th>
+              <th>Residencia</th>
+              <th>Permisos</th>
+              <th>Estado</th>
+              <th>Restricciones Dietéticas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Konstantin Konstantinopisky</td>
+              <td>London</td>
+              <td>Usuario</td>
+              <td>Activo</td>
+              <td>Ninguna</td>
+            </tr>
+            <tr>
+              <td>Andrew Salgado</td>
+              <td>London</td>
+              <td>Usuario</td>
+              <td>Activo</td>
+              <td>Ninguna</td>
+            </tr>
+            <!-- Agregar más usuarios aquí -->
+          </tbody>
+        </table>
+      </div>
+    
+      <!-- Paginación -->
+      <div class="pagination">
+        <button>Previous</button>
+        <span>1</span>
+        <button>2</button>
+        <button>3</button>
+        <button>Next</button>
+      </div>
