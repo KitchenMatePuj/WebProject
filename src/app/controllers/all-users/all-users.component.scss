@@ -100,6 +100,20 @@
     padding: 0 20px;
   }
 
+  .search-bar {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+  }
+
+  .search-users-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
   .tabs {
     display: flex;
     gap: 20px;
@@ -119,19 +133,12 @@
     }
   }
 
-  .search-bar {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: none;
-    background-color: white;
-  }
+
 
   .active-users-container {
     background-color: white;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 5px; 
     box-shadow: none;
 
     .users-stats-table {
@@ -260,4 +267,5 @@
       }
     }
   }
+}
 }

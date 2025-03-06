@@ -33,4 +33,64 @@
       <button class="tab" [ngClass]="{'active': isSearchActive}">Todos los comentarios</button>
       </div>
       </div>
+
+         <!-- Contenido principal del componente All comments -->
+
+      <div class="comments_list-container">
+        <h2>Comentarios</h2>
+        <!-- Categorías de recetas -->
+          <div class="comments-options">
+              <h3>Halladas: 5611</h3>
+            <label><input type="radio" name="category" value="todo"> Todo</label>
+            <label><input type="radio" name="category" value="pendientes"> Pendientes</label>
+            <label><input type="radio" name="category" value="aprobadas"> Aprobadas</label>
+            <label><input type="radio" name="category" value="papelera"> Papelera</label>
+            <label><input type="radio" name="category" value="spam"> Spam</label>
+            <label><input type="radio" name="category" value="mios"> Míos</label>
+
+          </div>
+        </div>
+
+
+      <!-- Tabla de comentarios -->
+       <div class="comments-table-container">
+      <div class="comments-table">
+        <h3>Hallados: 5611</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Autor</th>
+              <th>Comentario</th>
+              <th>En respuesta a</th>
+              <th>Enviado el</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pablo Piedra</td>
+              <td>Respuesta de respuesta</td>
+              <td>Crispy Tofu</td>
+              <td>Aprobada</td>
+            </tr>
+            <tr>
+              <td>Luisa Quintero</td>
+              <td>Respuesta de respuesta</td>
+              <td>Calabacín relleno</td>
+              <td>Aprobada</td>
+            </tr>
+            <!-- Agregar más usuarios aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+       <!-- Paginación -->
+       <div class="pagination">
+        <button class="previous disabled">Previous</button>
+        <span class="page-number active">1</span>
+        <button class="page-number">2</button>
+        <button class="page-number">3</button>
+        <button class="next">Next</button>
+      </div>
+
   

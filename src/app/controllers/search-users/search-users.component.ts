@@ -27,6 +27,10 @@ export class SearchUsersComponent {
     this.router.navigate(['/login']);
   }
 
+  goToSearchUsers() {
+    this.router.navigate(['/search-users']);
+  }
+
   goToProfile() {
     this.router.navigate(['/profile']);  // Redirige al perfil del admin
   }

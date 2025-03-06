@@ -26,9 +26,69 @@
         <input class="search-bar" type="text" placeholder="Búsqueda rápida">
       </div>
 
-        <!-- Aquí empieza la sección específica de la búsqueda de usuarios -->
+        <!-- Aquí empieza la sección específica de la búsqueda de recetas -->
         <div class="search_recipes-container">
           <div class="tabs">
             <button class="tab" [ngClass]="{'active': isSearchActive}">Encontrar recetas</button>
             <button class="tab" (click)="goToAllRecipes()" [ngClass]="{'active': !isSearchActive}">Todas las recetas</button>
           </div>
+
+               <!-- Filtros de búsqueda -->
+         <div class="filter-container">
+          <div class="search-filters">
+            <div class="filter-item">
+              <label for="name">Nombre de la Receta</label>
+              <input id="name" type="text" placeholder="Buscar...">
+            </div>
+    
+            <div class="filter-item">
+              <label for="shortcuts">Atajos</label>
+              <input id="shortcuts" type="text" placeholder="Buscar...">
+            </div>
+
+            <div class="filter-item">
+              <label for="type">Tipo de Dieta</label>
+              <select id="type">
+                <option>Vegetariana</option>
+                <option>Vegana</option>
+                <option>Carnívora</option>
+              </select>
+            </div>
+          </div>
+  
+          <div class="filter-item">
+              <label for="difficulty">Nivel de Dificultad</label>
+              <select id="difficulty">
+                <option>Fácil</option>
+                <option>Normal</option>
+                <option>Difícil</option>
+              </select>
+            </div>
+  
+            <div class="filter-item">
+              <label for="preparation">Tiempo de Preparación</label>
+              <select id="preparation">
+                <option>15 minutos</option>
+                <option>30 minutos</option>
+                <option>45 minutos</option>
+                <option>60 minutos</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <div class="search-filters">
+                <div class="filter-item">
+                  <label for="ingredients">Búsqueda de Ingredientes</label>
+                  <input id="ingredients" type="text" placeholder="Buscar...">
+                </div>
+    
+  
+          </div>
+    
+          <div class="search-buttons">
+            <button class="clear-button">Limpiar</button>
+            <button class="search-button">Buscar</button>
+          </div>
+        </div>
+    </div>
+    

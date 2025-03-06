@@ -10,6 +10,19 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent {
   constructor(private router: Router) {}
+  isEditable = false;
+
+  toggleEdit() {
+    this.isEditable = !this.isEditable;
+    const inputs = document.querySelectorAll('.profile_data-container input, .profile_data-container select');
+    inputs.forEach(input => {
+      if (this.isEditable) {
+        input.classList.add('editable');
+      } else {
+        input.classList.remove('editable');
+      }
+    });
+  }
 
   logout() {
     localStorage.removeItem('isAuthenticated');

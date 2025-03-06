@@ -33,4 +33,51 @@
         <button class="tab" (click)="goToAllComments()" [ngClass]="{'active': !isSearchActive}">Todos los comentarios</button>
         </div>
         </div>
+
+                <!-- Filtros de búsqueda -->
+                  <div class="filter-container">
+                    <b><p>Filtros</p></b>
+                  <div class="search-filters">
+                    <div class="filter-item">
+                      <label for="name">Nombre del Autor</label>
+                      <input id="name" type="text" placeholder="Buscar...">
+                    </div>
+            
+                    <div class="filter-item">
+                      <label for="status">Estado</label>
+                      <select id="status">
+                        <option>Todos</option>
+                        <option>Subida</option>
+                        <option>Eliminada</option>
+                        <option>Baneada</option>
+                      </select>
+                    </div>
+          
+           
+                    <div class="filter-item">
+                      <label for="type">Tipo de Comentario</label>
+                      <select id="type">
+                        <option>Respuesta</option>
+                        <option>Respuesta de respuesta</option>
+                        <option>Comentario</option>
+                      </select>
+                    </div>
+                  </div>
+          
+                  <div class="search-filters">
+                    <div class="filter-item">
+                      <label for="keywords">Palabras clave</label>
+                      <input id="keywords" type="text" placeholder="Buscar...">
+                    </div>
+            
+          
+                  </div>
+            
+
+                  <div class="search-buttons">
+                    <button class="clear-button">Limpiar</button>
+                    <button class="search-button">Buscar</button>
+                  </div>
+
+            
     
