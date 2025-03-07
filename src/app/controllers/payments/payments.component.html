@@ -1,0 +1,105 @@
+<div class="payments-container">
+    <nav class="sidebar">
+      <div class="profile" (click)="goToProfile()">
+        <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+        <span class="profile-name">Moderator</span>
+      </div>
+  
+      <div class="menu-container">
+        <ul>
+          <li><a (click)="goToCampaignSearch()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Campañas</a></li>
+          <li><a (click)="goToReports()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Reportes</a></li>
+          <li><a (click)="goToPayments()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Gestión de Pagos</a></li>
+          <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+  
+      <div class="version-info">
+        <p>KitchenMate</p> 
+        <p>Versión 1.0.0.11</p>
+      </div>
+    </nav>
+  
+    <main class="content">
+      <div class="top-bar">
+        <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+      </div>
+    
+      <!-- Contenedor de filtros -->
+      <div class="filter-container">
+        <h2>Filtros</h2>
+        <div class="search-filters">
+          <div class="filter-item">
+            <label for="name">Nombre de la Campaña</label>
+            <input id="name" type="text" placeholder="Buscar...">
+          </div>
+  
+          <div class="filter-item">
+            <label for="status">Estado del Pago</label>
+            <select id="type">
+            <option>Pagado</option>
+            <option>Pendiente</option>
+            <option>Parcialmente Pagado</option>    
+            </select>
+          </div>
+  
+          <div class="filter-item">
+            <label for="date-range">Rango de Fechas</label>
+            <input type="date" id="date-range" name="date-range">
+            <br>
+            <input type="date" id="date-range" name="date-range">
+          </div>
+
+          <div class="filter-item">
+            <label for="budget-range">Rango del Presupuesto</label>
+                <input id="budget-range" type="text" placeholder="Min">
+                <br>
+                <input id="budget-range" type="text" placeholder="Máx">
+              </div>
+
+          </div>
+        </div>
+  
+      <!-- Contenedor de lista de pagos -->
+      <div class="payments-table-container">
+        <h2>Lista de Campañas</h2>
+        <div class="payments-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre de la Campaña</th>
+                <th>Presupuesto Total</th>
+                <th>Gastos Realizados<th>
+                <th>Saldo Disponible</th>
+                <th>Estado del Pago</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Promoción Verano</td>
+                <td>15,000 USD</td>
+                <td>10,000 USD</td>
+                <td>5,000 USD</td>
+                <td>Pagado</td>
+              </tr>
+  
+            </tbody>
+          </table>
+        </div>
+  
+        <!-- Paginación -->
+        <div class="pagination">
+          <button>Previous</button>
+          <span>1</span>
+          <button>2</button>
+          <button>3</button>
+          <button>Next</button>
+        </div>
+  
+        <div class="search-buttons">
+          <button class="clear-button">Limpiar</button>
+          <button class="search-button">Buscar</button>
+        </div>
+      </div>
+    </main>
+  </div>

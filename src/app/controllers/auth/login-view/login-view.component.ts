@@ -34,8 +34,10 @@ export class LoginViewComponent {
   login() {
     console.log('Intentando iniciar sesión con:', this.username, this.password);
     if (this.authService.login(this.username, this.password)) {
-      if (this.username === 'admin') {
+      if (this.username === 'admin' && this.password === 'admin123') {
         this.router.navigate(['/dashboard']);
+      } else if(this.username === 'mod' && this.password === 'mod123') {
+        this.router.navigate(['/campaign-search']);
       } else {
       alert('Credenciales incorrectas');
       }
