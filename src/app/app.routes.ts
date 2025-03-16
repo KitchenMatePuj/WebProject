@@ -23,6 +23,8 @@ import { CampaignSearchComponent } from './controllers/campaign-search/campaign-
 import { CampaignCreationComponent } from './controllers/campaign-creation/campaign-creation.component';
 import { PerformanceReportComponent } from './controllers/performance-report/performance-report.component';
 import { PaymentsComponent } from './controllers/payments/payments.component';
+import { TotalReportsComponent } from './controllers/total-reports/total-reports.component';
+import { DetailsComponent } from './controllers/details/details.component';
 
 
 
@@ -46,6 +48,8 @@ export const routes: Routes = [
     { path: 'campaign-creation', component: CampaignCreationComponent, canActivate: [authGuard]},
     { path: 'performance-report', component: PerformanceReportComponent, canActivate: [authGuard]},
     { path: 'payments', component: PaymentsComponent, canActivate: [authGuard]},
+    { path: 'total-reports', component: TotalReportsComponent, canActivate: [authGuard]},
+    { path: 'details', component: DetailsComponent, canActivate: [authGuard]},
     { path: '', redirectTo: '/login', pathMatch: 'full' }
   ];
 

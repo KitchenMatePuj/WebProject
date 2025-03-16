@@ -7,7 +7,9 @@ export class AuthService {
   private isAuthenticated = false;
   private validUsers = [
     { username: 'admin', password: 'admin123' }, // ✅ Usuario válido
+    { username: 'publi', password: 'publi123' },    // ✅ Otro usuario válido
     { username: 'mod', password: 'mod123' }    // ✅ Otro usuario válido
+
   ];
 
   constructor() {}

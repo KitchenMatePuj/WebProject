@@ -36,9 +36,12 @@ export class LoginViewComponent {
     if (this.authService.login(this.username, this.password)) {
       if (this.username === 'admin' && this.password === 'admin123') {
         this.router.navigate(['/dashboard']);
-      } else if(this.username === 'mod' && this.password === 'mod123') {
+      } else if(this.username === 'publi' && this.password === 'publi123') {
         this.router.navigate(['/campaign-search']);
-      } else {
+      } else if(this.username === 'mod'  && this.password === 'mod123') {
+        this.router.navigate(['/total-reports']);
+      }
+      else {
       alert('Credenciales incorrectas');
       }
     }
