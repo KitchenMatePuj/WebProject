@@ -8,7 +8,8 @@ export class AuthService {
   private validUsers = [
     { username: 'admin', password: 'admin123' }, // ✅ Usuario válido
     { username: 'publi', password: 'publi123' },    // ✅ Otro usuario válido
-    { username: 'mod', password: 'mod123' }    // ✅ Otro usuario válido
+    { username: 'mod', password: 'mod123' },    // ✅ Otro usuario válido
+    { username: 'strats', password: 'strats123' }    // ✅ Otro usuario válido
 
   ];
 

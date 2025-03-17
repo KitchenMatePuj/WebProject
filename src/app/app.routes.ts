@@ -25,6 +25,7 @@ import { PerformanceReportComponent } from './controllers/performance-report/per
 import { PaymentsComponent } from './controllers/payments/payments.component';
 import { TotalReportsComponent } from './controllers/total-reports/total-reports.component';
 import { DetailsComponent } from './controllers/details/details.component';
+import { TrendAnalysisComponent } from './controllers/trend-analysis/trend-analysis.component';
 
 
 
@@ -50,6 +51,7 @@ export const routes: Routes = [
     { path: 'payments', component: PaymentsComponent, canActivate: [authGuard]},
     { path: 'total-reports', component: TotalReportsComponent, canActivate: [authGuard]},
     { path: 'details', component: DetailsComponent, canActivate: [authGuard]},
+    { path: 'trend-analysis', component: TrendAnalysisComponent, canActivate: [authGuard]},
     { path: '', redirectTo: '/login', pathMatch: 'full' }
   ];
 

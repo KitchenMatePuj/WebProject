@@ -40,6 +40,8 @@ export class LoginViewComponent {
         this.router.navigate(['/campaign-search']);
       } else if(this.username === 'mod'  && this.password === 'mod123') {
         this.router.navigate(['/total-reports']);
+      } else if(this.username === 'strats' && this.password === 'strats123') {
+        this.router.navigate(['/trend-analysis'])
       }
       else {
       alert('Credenciales incorrectas');

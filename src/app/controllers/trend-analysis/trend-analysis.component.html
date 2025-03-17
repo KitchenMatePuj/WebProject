@@ -1,0 +1,98 @@
+<div class="trend-analysis-container">
+    <nav class="sidebar">
+      <div class="profile" (click)="goToProfile()">
+        <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+        <span class="profile-name">Strategist</span>
+      </div>
+  
+      <div class="menu-container">
+        <ul>
+            <li><a (click)="goToPersonalizedReports()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Análisis Tendencias</a></li>
+          <li><a (click)="goToReports()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Reportes</a></li>
+          <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+      
+
+      <div class="version-info">
+        <p>KitchenMate</p> 
+        <p>Versión 1.0.0.11</p>
+      </div>
+    </nav>
+
+  
+    <main class="content">
+      <div class="top-bar">
+        <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+      </div>
+  
+      <div class="filter-section">
+        <div class="filter-item">
+          <label for="report-type">Tipo de Reporte</label>
+          <select id="report-type">
+            <option value="comentario">Comentario</option>
+            <option value="receta">Receta</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label for="user-segmentation">Segmentación de Usuario</label>
+          <select id="user-segmentation">
+            <option value="todos">Todos</option>
+            <option value="activos">Activos</option>
+            <option value="inactivos">Inactivos</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label for="comment-type">Tipo de Comentario</label>
+          <select id="comment-type">
+            <option value="positivo">Positivo</option>
+            <option value="negativo">Negativo</option>
+            <option value="neutral">Neutral</option>
+          </select>
+        </div>
+        <div class="search-buttons">
+          <button type="button" class="search-button">Buscar</button>
+          <button type="button" class="clear-button">Limpiar</button>
+        </div>
+      </div>
+  
+      <div class="word-cloud">
+        <h2>Interacción más vistas</h2>
+        <div class="cloud-content">
+          <!-- Aquí iría el contenido del word cloud -->
+          <span>PASTA</span>
+          <span>RAMEN</span>
+          <span>SUSHI</span>
+        </div>
+      </div>
+  
+      <div class="important-data">
+        <h2>Datos importantes</h2>
+        <div class="data-content">
+          <!-- Aquí iría el contenido del gráfico de tendencias -->
+          <img src="assets/icons/trend-graph.png" alt="Gráfico de tendencias">
+        </div>
+      </div>
+  
+      <div class="statistics">
+        <h2>Estadísticas</h2>
+        <div class="statistics-content">
+          <!-- Aquí iría el contenido del gráfico de dispersión -->
+          <img src="assets/icons/scatter-plot.png" alt="Gráfico de dispersión">
+        </div>
+      </div>
+  
+      <div class="trending-searches">
+        <h2>Tendencias más buscadas</h2>
+        <ul>
+          <li>PASTA</li>
+          <li>RAMEN</li>
+          <li>SUSHI</li>
+        </ul>
+      </div>
+  
+      <div class="export-section">
+        <button type="button" class="export-button">Exportar a Excel</button>
+      </div>
+    </main>
