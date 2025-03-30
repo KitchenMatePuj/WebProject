@@ -1,0 +1,94 @@
+<div class="details-container">
+    <nav class="sidebar">
+      <div class="profile" (click)="goToProfile()">
+        <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+        <span class="profile-name">Moderator</span>
+      </div>
+  
+      <div class="menu-container">
+        <ul>
+          <li><a (click)="goToReports()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Reportes</a></li>
+          <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+  
+      <div class="version-info">
+        <p>KitchenMate</p>
+        <p>Versión 1.0.0.11</p>
+      </div>
+    </nav>
+  
+    <main class="content">
+      <div class="top-bar">
+        <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+      </div>
+  
+      <div class="details-content">
+        <div class="columns">
+          <div class="column">
+            <div class="filter-item">
+              <label for="name">Nombre</label>
+              <input type="text" id="name" value="Amparito" />
+            </div>
+            <div class="filter-item">
+              <label for="role">Rol</label>
+              <input type="text" id="role" value="Administrador" />
+            </div>
+            <div class="filter-item">
+              <label for="id-number">Número de Documento</label>
+              <input type="text" id="id-number" value="1094044024" />
+            </div>
+          </div>
+          <div class="column">
+            <div class="filter-item">
+              <label for="report-date">Fecha de Reporte</label>
+              <input type="text" id="report-date" value="01/01/2025" />
+            </div>
+            <div class="filter-item">
+              <label for="report-description">Descripción del Reporte</label>
+              <input type="text" id="report-description" value="El usuario @PepeGangita puso un comentario despectivo hacia nuestros compatriotas venezolanos..." />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="report-details">
+        <div class="status">
+          <h2>Detalles del Reporte (Comentario)</h2>
+          <p><strong>Estado Actual:</strong> Pendiente</p>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <div class="filter-item">
+              <label for="comment-date">Fecha y Hora de Comentario / Receta</label>
+              <p id="comment-date">31/12/2024 (22:37)</p>
+            </div>
+            <div class="filter-item">
+              <label for="report-type">Tipo de Reporte</label>
+              <p id="report-type">Comentario / Receta / Otro</p>
+            </div>
+            <div class="filter-item">
+              <label for="reported-element">Elemento Reportado</label>
+              <p id="reported-element">Descripción del Comentario</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="filter-item">
+              <label for="comment-recipe">Comentario / Receta en Cuestión</label>
+              <blockquote id="comment-recipe">"Pasta Italiana a la Venec..." / "Detesto estas Recetas Venecas..."</blockquote>
+              <a href="#" class="view-comment">Ver Comentario Reportado ></a>
+              <a href="#" class="view-user">Ver Usuario (Responsable) ></a>
+            </div>
+            <div class="filter-item">
+              <label for="additional-files">Archivos Adicionales Subidos</label>
+              <img src="assets/icons/upload.png" alt="Archivo Adicional Subido" id="additional-files" />
+              (jpg, mp4, gif)
+            </div>
+          </div>
+        </div>
+  
+        <!-- Buttons -->
+        <button type="button" class="delete-report">Eliminar Reporte</button>
+        <button type="button" class="delete-comment-recipe">Eliminar Comentario / Receta</button>
+      </div>
+    </main>
+  </div>

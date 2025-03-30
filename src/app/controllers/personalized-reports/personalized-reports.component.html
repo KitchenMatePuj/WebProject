@@ -1,0 +1,86 @@
+<div class="personalized-reports-container">
+    <nav class="sidebar">
+      <div class="profile" (click)="goToProfile()">
+        <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+        <span class="profile-name">Luisa Quintero</span>
+      </div>
+  
+      <div class="menu-container">
+        <ul>
+          <li><a (click)="goToPersonalizedReports()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Reportes</a></li>
+          <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Ayuda</a></li>
+          <li><a (click)="goToTrendAnalysis()"><img class="sidebar-icon" src="assets/icons/trend-icon.png">Análisis de tendencias</a></li>
+        </ul>
+      </div>
+  
+      <div class="version-info">
+        <p>KitchenMate</p>
+        <p>Versión 1.0.0.11</p>
+      </div>
+    </nav>
+  
+    <main class="content">
+      <div class="top-bar">
+        <input class="search-bar" type="text" placeholder="Buscar">
+      </div>
+  
+      <div class="report-parameters">
+        <h2>Parámetros del reporte</h2>
+        <div class="filter-item">
+          <label for="report-type">Tipo de Reporte</label>
+          <select id="report-type">
+            <option value="ventas">Ventas</option>
+            <option value="usuarios">Usuarios</option>
+            <option value="productos">Productos</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label for="report-period">Período del reporte</label>
+          <select id="report-period">
+            <option value="mensual">Mensual</option>
+            <option value="trimestral">Trimestral</option>
+            <option value="anual">Anual</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label for="report-options">Opciones del reporte</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" id="demographic-data"> Datos demográficos</label>
+            <label><input type="checkbox" id="geographic-stats"> Estadísticas geográficas</label>
+            <label><input type="checkbox" id="sales-info"> Información de ventas</label>
+            <label><input type="checkbox" id="customer-preferences"> Preferencias de los clientes</label>
+          </div>
+        </div>
+        <div class="report-buttons">
+          <button type="button" class="clear-button">Limpiar</button>
+          <button type="button" class="create-button">Crear</button>
+        </div>
+      </div>
+  
+      <div class="important-data">
+        <h2>Datos importantes</h2>
+        <div class="data-content">
+          <!-- Aquí iría el contenido del gráfico de barras -->
+          <img src="assets/icons/bar-chart.png" alt="Gráfico de barras">
+        </div>
+      </div>
+  
+      <div class="statistics">
+        <h2>Estadísticas</h2>
+        <div class="statistics-content">
+          <!-- Aquí iría el contenido del gráfico de pastel -->
+          <img src="assets/icons/pie-chart.png" alt="Gráfico de pastel">
+        </div>
+      </div>
+  
+      <div class="additional-info">
+        <p>Las ventas aumentaron un 15% respecto al mes pasado.</p>
+        <p>El tiempo promedio de sesión es de 5 minutos.</p>
+      </div>
+  
+      <div class="footer">
+        <p>KitchenMate Versión 1.0.0(11)</p>
+        <button type="button" class="report-error-button">Reportar el Error</button>
+      </div>
+    </main>
+  </div>

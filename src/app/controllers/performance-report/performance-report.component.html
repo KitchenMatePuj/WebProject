@@ -1,0 +1,111 @@
+<div class="performance-report-container">
+    <nav class="sidebar">
+      <div class="profile" (click)="goToProfile()">
+        <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+        <span class="profile-name">Publicist</span>
+      </div>
+  
+      <div class="menu-container">
+        <ul>
+          <li><a (click)="goToCampaignSearch()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Campañas</a></li>
+          <li><a (click)="goToReports()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Reportes</a></li>
+          <li><a (click)="goToPayments()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Gestión de Pagos</a></li>
+          <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+  
+      <div class="version-info">
+        <p>KitchenMate</p> 
+        <p>Versión 1.0.0.11</p>
+      </div>
+    </nav>
+  
+    <main class="content">
+      <div class="top-bar">
+        <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+      </div>
+  
+      <!-- Contenedor de filtros -->
+      <div class="filter-container">
+        <h2>Filtros</h2>
+        <div class="search-filters">
+          <div class="filter-item">
+            <label for="selection">Selección de Campaña</label>
+            <select id="selection">
+              <option>Todas</option>
+              <option>Promoción Verano</option>
+              <option>Nuevo Producto</option>
+              <option>Campaña Navidad</option>
+              <option>Semana de Descuentos</option>
+            </select>
+          </div>
+  
+          <div class="filter-item">
+            <label for="audience">Segmentación de Audiencia</label>
+            <select id="audience">
+              <option>Todos</option>
+              <option>Edad</option>
+              <option>Ubicación Geográfica</option>
+              <option>Dispositivo Utilizado</option>
+            </select>
+          </div>
+  
+          <div class="filter-item">
+            <label for="period">Período del Reporte</label>
+            <select id="period">
+              <option>Seleccionar</option>
+              <option>Últimos 7 días</option>
+              <option>Últimos 30 días</option>
+              <option>Este semestre</option>
+              <option>Este año</option>
+            </select>
+          </div>
+  
+          <div class="filter-item">
+            <label for="metrics">Métricas</label>
+            <div class="metrics-container">
+              <div class="checkbox-option">
+                <input type="checkbox" id="impresions" checked>
+                <label for="impresions">Impresiones</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="clics">
+                <label for="clics">Clics</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="conversions">
+                <label for="conversions">Conversiones</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="total-spent">
+                <label for="total-spent">Gasto Total</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="cost-clic">
+                <label for="cost-clic">Costo por Clic</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="cost-conversion">
+                <label for="cost-conversion">Costo por Conversión</label>
+              </div>
+            </div>
+          </div>
+
+  
+      <!-- Contenedor de datos importantes y estadísticas -->
+      <div class="dashboard-cards">
+        <div class="card">
+          <h3>Datos importantes</h3>
+          <div class="card-content">
+            <p>Aquí se mostrarán los gráficos de datos importantes.</p>
+          </div>
+        </div>
+  
+        <div class="card">
+          <h3>Estadísticas</h3>
+          <div class="card-content">
+            <p>Aquí se mostrarán las estadísticas.</p>
+          </div>
+        </div>
+      </div>
+  </div>

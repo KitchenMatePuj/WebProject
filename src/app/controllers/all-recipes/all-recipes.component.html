@@ -1,0 +1,110 @@
+<div class="all_recipes-container">
+  <nav class="sidebar">
+    <div class="profile" (click)="goToProfile()">
+      <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+      <span class="profile-name">Admin</span>
+    </div>
+
+    <div class="menu-container">
+      <ul>
+        <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Dashboard</a></li>
+        <li><a (click)="goToSearchUsers()"><img class="sidebar-icon" src="assets/icons/users-icon.png">Usuarios</a></li>
+        <li><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Recetas</a></li>
+        <li><a (click)="goToComments()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Administración</a></li>
+        <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+
+    <div class="version-info">
+      <p>KitchenMate</p> 
+      <p>Versión 1.0.0.11</p>
+    </div>
+  </nav>
+
+  <main class="content">
+    <!-- Barra superior con búsqueda y foto de perfil -->
+    <div class="top-bar">
+      <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+    </div>
+
+    <div class="search_recipes-container">
+    <div class="tabs">
+      <button class="tab" (click)="goToRecipes()" [ngClass]="{'active': !isSearchActive}">Encontrar recetas</button>
+      <button class="tab" [ngClass]="{'active': isSearchActive}">Todas las recetas</button>
+    </div>
+
+    <!-- Contenido principal del componente All recipes -->
+  
+      <!-- Contenido principal del componente All Recipes -->
+      <div class="recipe_list-container">
+        <h2>Lista de Recetas</h2>
+
+        <!-- Categorías de recetas -->
+        <div class="recipes-categories">
+          <h3>Categoría</h3>
+          <div class="category-options">
+            <label><input type="radio" name="category" value="todo"> Todo</label>
+            <label><input type="radio" name="category" value="vegetarianas"> Vegetarianas</label>
+            <label><input type="radio" name="category" value="veganas"> Veganas</label>
+            <label><input type="radio" name="category" value="carnivoras"> Carnívoras</label>
+            <!-- Agregar más categorías aquí -->
+          </div>
+        </div>
+
+        <!-- Estado de recetas -->
+        <div class="recipes-status">
+          <h3>Estado</h3>
+          <div class="status-options">
+            <label><input type="checkbox" name="status" value="aprobadas"> Aprobadas</label>
+            <label><input type="checkbox" name="status" value="pendientes"> Pendientes</label>
+            <label><input type="checkbox" name="status" value="desaprobadas"> Desaprobadas</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla de recetas -->
+       <div class="recipes-table-container">
+      <div class="recipes-table">
+        <h3>Encontrados: 254</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre Completo</th>
+              <th>Residencia</th>
+              <th>Permisos</th>
+              <th>Estado</th>
+              <th>Restricciones Dietéticas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Konstantin Konstantinopisky</td>
+              <td>London</td>
+              <td>Usuario</td>
+              <td>Activo</td>
+              <td>Ninguna</td>
+            </tr>
+            <tr>
+              <td>Andrew Salgado</td>
+              <td>London</td>
+              <td>Usuario</td>
+              <td>Activo</td>
+              <td>Ninguna</td>
+            </tr>
+            <!-- Agregar más usuarios aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+       <!-- Paginación -->
+       <div class="pagination">
+        <button class="previous disabled">Previous</button>
+        <span class="page-number active">1</span>
+        <button class="page-number">2</button>
+        <button class="page-number">3</button>
+        <button class="next">Next</button>
+      </div>
+    </div>
+  </main>
+</div>

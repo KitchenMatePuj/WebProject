@@ -1,0 +1,33 @@
+<div class="login-container">
+    <div class="login-box">
+      <h1>KITCHENMATE</h1>
+      <p>¡Descubre el chef que llevas dentro!</p>
+      <br>
+
+      <p><b>¡Bienvenido!</b></p>
+  
+      <form (ngSubmit)="login()">
+        <div class="input-group">
+          <label for="email">Correo electrónico</label>
+          <input id="email" type="email" [(ngModel)]="username" name="username" required>
+        </div>
+  
+        <div class="input-group password-container">
+            <label for="password">Contraseña</label>
+            <input id="password" [type]="passwordFieldType" [(ngModel)]="password" name="password" required>
+            <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+              <img [src]="passwordIcon" alt="Mostrar/Ocultar contraseña" width="25" height="25">
+            </button>
+          </div>
+          
+          
+  
+        <button type="submit" class="login-button">INICIAR SESIÓN</button>
+      </form>
+  
+      <div class="forgot-password">
+        <a href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+    </div>
+  </div>
+  

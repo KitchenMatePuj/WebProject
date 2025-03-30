@@ -1,0 +1,94 @@
+<div class="recipes-container">
+    <nav class="sidebar">
+      <div class="profile" (click)="goToProfile()">
+        <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+        <span class="profile-name">Admin</span>
+      </div>
+
+      <div class="menu-container">
+        <ul>
+          <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Dashboard</a></li>
+          <li><a (click)="goToSearchUsers()"><img class="sidebar-icon" src="assets/icons/users-icon.png">Usuarios</a></li>
+          <li><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Recetas</a></li>
+          <li><a (click)="goToComments()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Administración</a></li>
+          <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+  
+      <div class="version-info">
+        <p>KitchenMate</p> 
+        <p>Versión 1.0.0.11</p>
+      </div>
+    </nav>
+
+    <main class="content">
+      <div class="top-bar">
+        <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+      </div>
+
+        <!-- Aquí empieza la sección específica de la búsqueda de recetas -->
+        <div class="search_recipes-container">
+          <div class="tabs">
+            <button class="tab" [ngClass]="{'active': isSearchActive}">Encontrar recetas</button>
+            <button class="tab" (click)="goToAllRecipes()" [ngClass]="{'active': !isSearchActive}">Todas las recetas</button>
+          </div>
+
+               <!-- Filtros de búsqueda -->
+         <div class="filter-container">
+          <div class="search-filters">
+            <div class="filter-item">
+              <label for="name">Nombre de la Receta</label>
+              <input id="name" type="text" placeholder="Buscar...">
+            </div>
+    
+            <div class="filter-item">
+              <label for="shortcuts">Atajos</label>
+              <input id="shortcuts" type="text" placeholder="Buscar...">
+            </div>
+
+            <div class="filter-item">
+              <label for="type">Tipo de Dieta</label>
+              <select id="type">
+                <option>Vegetariana</option>
+                <option>Vegana</option>
+                <option>Carnívora</option>
+              </select>
+            </div>
+          </div>
+  
+          <div class="filter-item">
+              <label for="difficulty">Nivel de Dificultad</label>
+              <select id="difficulty">
+                <option>Fácil</option>
+                <option>Normal</option>
+                <option>Difícil</option>
+              </select>
+            </div>
+  
+            <div class="filter-item">
+              <label for="preparation">Tiempo de Preparación</label>
+              <select id="preparation">
+                <option>15 minutos</option>
+                <option>30 minutos</option>
+                <option>45 minutos</option>
+                <option>60 minutos</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <div class="search-filters">
+                <div class="filter-item">
+                  <label for="ingredients">Búsqueda de Ingredientes</label>
+                  <input id="ingredients" type="text" placeholder="Buscar...">
+                </div>
+    
+  
+          </div>
+    
+          <div class="search-buttons">
+            <button class="clear-button">Limpiar</button>
+            <button class="search-button">Buscar</button>
+          </div>
+        </div>
+    </div>
+    
