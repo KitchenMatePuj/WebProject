@@ -1,0 +1,26 @@
+{
+  "routes": {
+    "/": {},
+    "/actuacion": {},
+    "/all-comments": {},
+    "/all-recipes": {},
+    "/all-users": {},
+    "/campaign-creation": {},
+    "/campaign-search": {},
+    "/comments": {},
+    "/dashboard": {},
+    "/details": {},
+    "/firma": {},
+    "/login": {},
+    "/payments": {},
+    "/performance-report": {},
+    "/process": {},
+    "/profile": {},
+    "/recipes": {},
+    "/search-users": {},
+    "/storage": {},
+    "/total-reports": {},
+    "/trend-analysis": {},
+    "/user": {}
+  }
+}
