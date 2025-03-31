@@ -16,6 +16,7 @@ export interface Profile {
 }
 
 export interface MostSaved {
+  title: any;
   recipe_id: number;
   count: number;
 }

@@ -35,6 +35,16 @@ export class SearchUsersComponent {
   ngOnInit(): void {
     this.loadIngredients();
   }
+
+      // Método opcional para limpiar los filtros y resultados
+      clearFilters(): void {
+        this.firstNameSearch = '';
+        this.lastNameSearch = '';
+        this.emailSearch = '';
+        this.accountStatusSearch = '';
+        this.allergyNameSearch = '';
+        this.foundProfiles = [];
+      }
   
 
   searchUsers() {
@@ -67,13 +77,6 @@ export class SearchUsersComponent {
     });
   }
 
-  clearForm() {
-    this.firstNameSearch = '';
-    this.lastNameSearch = '';
-    this.emailSearch = '';
-    this.accountStatusSearch = '';
-    this.allergyNameSearch = '';
-  }
 
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;
