@@ -20,12 +20,18 @@ export interface TotalRecipeCount {
   total_recipes: number;
 }
 
+export interface RecipesSearch {
+  title: string;
+  cooking_time: number;
+  ingredient: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   // Ajusta esta URL según tu backend (puerto, subruta, etc.)
-  private baseUrl = 'http://localhost:8004';
+  private baseUrl = 'http://localhost:8000';
 
   constructor(private http: HttpClient) {} 
 
@@ -41,6 +47,27 @@ export class RecipeService {
     return this.http.get<TotalRecipeCount>(
       `${this.baseUrl}/recipes/statistics/total`
     );
+  }
+
+    /**
+   * Busca recetas usando filtros opcionales.
+   * @param title Filtro por título (opcional)
+   * @param cooking_time Filtro por tiempo de cocción (opcional)
+   * @param ingredient Filtro por ingrediente (opcional)
+   */
+  searchRecipes(title?: string, cooking_time?: number, ingredient?: string): Observable<Recipe[]> {
+    let params = new HttpParams();
+    if (title) {
+      params = params.set('title', title);
+    }
+    if (cooking_time) {
+      params = params.set('cooking_time', cooking_time.toString());
+    }
+    if (ingredient) {
+      params = params.set('ingredient', ingredient);
+    }
+    // El endpoint según OpenAPI es /recipes/search
+    return this.http.get<Recipe[]>(`${this.baseUrl}/recipes/search`, { params });
   }
 
 

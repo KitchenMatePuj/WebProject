@@ -1,17 +1,60 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; // CommonModule
+import { Recipe, RecipeService } from '../../services/recipe.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-recipes',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './recipes.component.html',
-  styleUrl: './recipes.component.scss'
+  styleUrl: './recipes.component.scss',
 })
-export class RecipesComponent {
+export class RecipesComponent implements OnInit {
+
+
+
+// Variables para filtros
+    titleFilter: string = '';
+    cookingTimeFilter?: number;
+    ingredientFilter: string = '';
+  
+    // Variable para almacenar los resultados
+    searchResults: Recipe[] = [];
   isSearchActive: boolean = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private recipeService: RecipeService) {}
+
+  ngOnInit(): void {
+  }
+
+    // Método opcional para limpiar los filtros y resultados
+    clearFilters(): void {
+      this.titleFilter = '';
+      this.cookingTimeFilter = undefined;
+      this.ingredientFilter = '';
+      this.searchResults = [];
+    }
+
+
+  // Método que se ejecuta al presionar el botón "Buscar"
+  onSearch(): void {
+    // Llama al servicio y pasa los filtros
+    this.recipeService.searchRecipes(
+      this.titleFilter,
+      this.cookingTimeFilter,
+      this.ingredientFilter
+    ).subscribe({
+      next: (data: Recipe[]) => {
+        // Actualiza los resultados y, al tener datos, el contenedor se mostrará
+        this.searchResults = data;
+        console.log('Resultados de búsqueda:', data);
+      },
+      error: (err: any) => {
+        console.error('Error en la búsqueda:', err);
+      }
+    });
+  }
 
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;
@@ -39,9 +82,5 @@ export class RecipesComponent {
 
   goToComments() {
     this.router.navigate(['/comments']);
-  }
-
-  goToAllRecipes() {
-    this.router.navigate(['/all-recipes']);
   }
 }

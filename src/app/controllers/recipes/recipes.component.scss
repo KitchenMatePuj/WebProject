@@ -4,7 +4,7 @@
 
   .sidebar {
     width: 250px;
-    background: #F1F1F1; /* Fondo igual que el del dashboard */
+    background: #F1F1F1;
     color: white;
     padding: 20px;
     display: flex;
@@ -107,80 +107,133 @@
     background-color: white;
   }
 
-  .search_recipes-container {
+  // Contenedor del formulario de búsqueda (similar a un contenedor de filtros)
+  .recipe-search-container {
+    margin: 20px 0;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: center;
+    
+  }
 
-    .tabs {
-      display: flex;
-      gap: 20px;
+  // La "card" del formulario ocupará el 100% del ancho disponible, igual que el contenedor de filtros
+  .search-box {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0;
+    width: 100%;
+    /* Eliminamos max-width para que sea del mismo tamaño que el contenedor de filtros */
+    text-align: left;
 
-      .tab {
-        background: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        border: none;
-      }
-
-      .active {
-        background: #2F80ED;
-        color: white;
-        border: none;
-      }
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
 
-    .filter-container {
+    form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      padding: 20px;
-      background: white; /* Fondo blanco */
-      border-radius: 5px;
-      box-shadow: none;
-    }
+      gap: 15px;
 
-    .filter-item {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 10px;
+      .input-group {
+        display: flex;
+        flex-direction: column;
 
-      label {
-        margin-bottom: 5px;
+        label {
+          font-size: 14px;
+          font-weight: bold;
+          margin-bottom: 5px;
+          text-align: left;
+        }
+
+        input {
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+          transition: border-color 0.3s ease;
+          box-sizing: border-box;
+
+          &:focus {
+            border-color: #4CAF50;
+          }
+        }
+      }
+
+      button {
+        padding: 10px 15px;
+        background: #129575;
+        color: #fff;
+        font-size: 16px;
         font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background: #0f8668;
+        }
       }
 
-      input,
-      select {
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: none;
-        background-color: #f1f1f1;
+      button[type='button'] {
+        background: #f4f4f4;
+        color: #333;
+        margin-left: 10px;
+
+        &:hover {
+          background: #eaeaea;
+        }
       }
     }
+  }
 
-    .search-buttons {
-      display: flex;
-      gap: 20px;
+  .search-results-container {
+    margin: 20px auto;
+    max-width: 800px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0;
 
-      .clear-button,
-      .search-button {
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
+    h2 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        background: #129575;
+
+        th {
+          padding: 10px;
+          color: #fff;
+          font-size: 16px;
+          text-align: left;
+        }
       }
 
-      .clear-button {
-        background-color: #f4f4f4;
-      }
+      tbody {
+        tr {
+          border-bottom: 1px solid #ddd;
+          transition: background-color 0.3s ease;
 
-      .search-button {
-        background-color: #4caf50;
-        color: white;
+          &:hover {
+            background-color: #f9f9f9;
+          }
+
+          td {
+            padding: 10px;
+            font-size: 15px;
+            color: #333;
+          }
+        }
       }
     }
   }
