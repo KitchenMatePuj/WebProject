@@ -1,66 +1,122 @@
 <div class="dashboard-container">
-    <nav class="sidebar">
-        <div class="profile" (click)="goToProfile()">
-          <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
-          <span class="profile-name">Admin</span>
-        </div>
-
-      <div class="menu-container">  
+  <nav class="sidebar">
+    <div class="profile" (click)="goToProfile()">
+      <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+      <span class="profile-name">Admin</span>
+    </div>
+    <div class="menu-container">
       <ul>
-        <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="/assets/icons/dashboard-icon.png" alt="Dashboard">Dashboard</a></li>
-        <li><a (click)="goToSearchUsers()"><img class="sidebar-icon" src="assets/icons/users-icon.png">Usuarios</a></li>
-        <li><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Recetas</a></li>
-        <li><a (click)="goToComments()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Administración</a></li>
-        <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+        <li>
+          <a (click)="goToDashboard()">
+            <img class="sidebar-icon" src="/assets/icons/dashboard-icon.png" alt="Dashboard">Dashboard
+          </a>
+        </li>
+        <li>
+          <a (click)="goToSearchUsers()">
+            <img class="sidebar-icon" src="assets/icons/users-icon.png" alt="Usuarios">Usuarios
+          </a>
+        </li>
+        <li>
+          <a (click)="goToRecipes()">
+            <img class="sidebar-icon" src="assets/icons/recipes-icon.png" alt="Recetas">Recetas
+          </a>
+        </li>
+        <li>
+          <a (click)="goToComments()">
+            <img class="sidebar-icon" src="assets/icons/administration-icon.png" alt="Administración">Administración
+          </a>
+        </li>
+        <li>
+          <a (click)="logout()">
+            <img class="sidebar-icon" src="assets/icons/help-icon.png" alt="Cerrar Sesión">Cerrar Sesión
+          </a>
+        </li>
       </ul>
-      </div>
-
-      <div class="version-info">
-        <p>KitchenMate</p> 
-        <p>Versión 1.0.0.11</p>
-      </div>
-    </nav>
+    </div>
+    <div class="version-info">
+      <p>KitchenMate</p> 
+      <p>Versión 1.0.0.11</p>
+    </div>
+  </nav>
   
-    <main class="content">
-        <!-- Barra superior con búsqueda y foto de perfil -->
-        <div class="top-bar">         
-            <!-- Barra de búsqueda -->
-            <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+  <main class="content">
+    <!-- Barra superior con búsqueda -->
+    <div class="top-bar">
+      <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+    </div>
+  
+    <!-- Contenido principal: Cards del Dashboard -->
+    <div class="dashboard-cards">
+      <!-- Card: Estado de Perfiles -->
+      <div class="card">
+        <h3>Estado de Perfiles</h3>
+        <div class="card-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Profile ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Estado Cuenta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of profiles">
+                <td>{{ p.profile_id }}</td>
+                <td>{{ p.first_name }} {{ p.last_name }}</td>
+                <td>{{ p.email }}</td>
+                <td>{{ p.account_status }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
   
-
-        <!-- Contenido principal -->  
- <!-- Cuadros del Dashboard -->
-<div class="dashboard-cards">
-    <div class="card">
-      <h3>Datos importantes</h3>
-      <div class="card-content">
-        <p>Aquí se mostrarán los gráficos de datos importantes.</p>
+      <!-- Card: Recetas más guardadas -->
+      <div class="card">
+        <h3>Recetas más guardadas</h3>
+        <div class="card-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Receta ID</th>
+                <th>Veces Guardada</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of mostSaved">
+                <td>{{ item.recipe_id }}</td>
+                <td>{{ item.count }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      <!-- Card: Recetas con buena valoración -->
+      <div class="card">
+        <h3>Recetas con buena valoración</h3>
+        <div class="card-content">
+          <ul>
+            <li *ngFor="let recipe of recipes">
+              {{ recipe.title }} - ⭐ {{ recipe.rating_avg }}
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Card: Total de Recetas -->
+      <div class="card">
+        <h3>Total de Recetas</h3>
+        <div class="card-content">
+          <p *ngIf="totalCount.total_recipes !== null">
+            Total de recetas: {{ totalCount.total_recipes }}
+          </p>
+          <p *ngIf="totalCount.total_recipes === null">
+            Cargando o sin datos...
+          </p>
+        </div>
       </div>
     </div>
-  
-    <div class="card">
-      <h3>Estadísticas</h3>
-      <div class="card-content">
-        <p>Aquí se mostrarán las estadísticas.</p>
-      </div>
-    </div>
-  
-    <div class="card">
-      <h3>Comportamientos inusuales</h3>
-      <div class="card-content">
-        <p>Aquí se mostrarán los comportamientos inusuales.</p>
-      </div>
-    </div>
-  
-    <div class="card">
-      <h3>Estado del sistema</h3>
-      <div class="card-content">
-        <p>Aquí se mostrará el estado del sistema.</p>
-      </div>
-    </div>
-  </div>
-  
-    </main>
-  </div>
-  
+  </main>
+</div>

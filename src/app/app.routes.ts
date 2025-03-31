@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginViewComponent } from './controllers/auth/login-view/login-view.component';
 import { UserViewComponent } from './controllers/user/user-view/user-view.component';
-import { StorageViewComponent } from './controllers/storage/storage-view/storage-view.component';
 import { FirmaViewComponent } from './controllers/firma/firma-view/firma-view.component';
 import { ActuacionViewComponent } from './controllers/actuacion/actuacion-view/actuacion-view.component';
 import { ProcessViewComponent } from './controllers/process/process-view/process-view.component';
@@ -33,7 +32,6 @@ import { TrendAnalysisComponent } from './controllers/trend-analysis/trend-analy
 export const routes: Routes = [
     { path: 'login', component: LoginViewComponent },
     { path: 'user', component: UserViewComponent, canActivate: [authGuard] },
-    { path: 'storage', component: StorageViewComponent, canActivate: [authGuard] },
     { path: 'firma', component: FirmaViewComponent, canActivate: [authGuard] },
     { path: 'actuacion', component: ActuacionViewComponent, canActivate: [authGuard] },
     { path: 'process', component: ProcessViewComponent, canActivate: [authGuard] },
