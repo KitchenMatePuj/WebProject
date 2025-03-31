@@ -31,10 +31,6 @@ export class CommentsComponent {
     this.router.navigate(['/dashboard']);  // Redirige al dashboard
   }
 
-  goToAllUsers() {
-    this.router.navigate(['/all-users']);  // Redirige a la lista de todos los usuarios
-  }
-
   goToRecipes() {
     this.router.navigate(['/recipes']);  // Redirige a las recetas
   }

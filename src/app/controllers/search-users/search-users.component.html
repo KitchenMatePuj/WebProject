@@ -31,76 +31,82 @@
       <div class="search-users-container">
         <div class="tabs">
           <button class="tab" [ngClass]="{'active': isSearchActive}">Encontrar usuarios</button>
-          <button class="tab" (click)="goToAllUsers()" [ngClass]="{'active': !isSearchActive}">Todos los usuarios</button>
         </div>
   
         <!-- Filtros de búsqueda -->
          <div class="filter-container">
-        <div class="search-filters">
-          <div class="filter-item">
-            <label for="name">Nombre</label>
-            <input id="name" type="text" placeholder="Andrew Salgado">
-          </div>
-  
-          <div class="filter-item">
-            <label for="email">Correo electrónico</label>
-            <input id="email" type="email" placeholder="ejemplo@mail.com">
+            <div class="search-filters">
+              <form #searchForm="ngForm" (ngSubmit)="searchUsers()">
+
+                <div class="filter-container">
+                  <div class="search-filters">
+                    <div class="filter-item">
+                      <label for="firstName">Nombre</label>
+                      <input id="firstName" name="firstName" type="text" placeholder="Andrew" [(ngModel)]="firstNameSearch">
+                    </div>
+              
+                    <div class="filter-item">
+                      <label for="lastName">Apellido</label>
+                      <input id="lastName" name="lastName" type="text" placeholder="Salgado" [(ngModel)]="lastNameSearch">
+                    </div>
+              
+                    <div class="filter-item">
+                      <label for="email">Correo electrónico</label>
+                      <input id="email" name="email" type="email" placeholder="ejemplo@mail.com" [(ngModel)]="emailSearch">
+                    </div>
+              
+                    <div class="filter-item">
+                      <label for="accountStatus">Estado de la Cuenta</label>
+                      <select id="accountStatus" name="accountStatus" [(ngModel)]="accountStatusSearch">
+                        <option value="active">active</option>
+                        <option value="inactive">inactive</option>
+                      </select>
+                    </div>
+                  </div>
+              
+                  <div class="filter-item">
+                    <label for="allergyName">Alergias</label>
+                    <select id="allergyName" name="allergyName" [(ngModel)]="allergyNameSearch">
+                      <option *ngFor="let ingredient of ingredients" [value]="ingredient.name">
+                        {{ ingredient.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              
+                <!-- Botones -->
+                <div class="search-buttons">
+                  <button class="clear-button" type="button" (click)="clearForm()">Limpiar</button>
+                  <button class="search-button" type="submit">Buscar</button>
+                </div>
+              
+              </form>
+            </div>
           </div>
 
- 
-          <div class="filter-item">
-            <label for="status">Estado de la Cuenta</label>
-            <select id="status">
-              <option>Activa</option>
-              <option>Inactiva</option>
-            </select>
-          </div>
-        </div>
+                <!-- Tabla de usuarios -->
+          <div class="results-container">
+            <h3>Encontrados: {{ foundProfiles.length }}</h3>
 
-
-        <div class="filter-item">
-            <label for="restrictions">Restricciones Alimenticias</label>
-            <select id="restrictions">
-              <option>Vegano</option>
-              <option>Vegetariano</option>
-              <option>Intolerante a la Lactosa</option>
-              <option>Pescatariano</option>
-            </select>
+            <table *ngIf="foundProfiles.length > 0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre Completo</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let profile of foundProfiles">
+                  <td>{{ profile.keycloak_user_id }}</td>
+                  <td>{{ profile.first_name }} {{ profile.last_name }}</td>
+                  <td>{{ profile.email }}</td>
+                  
+                </tr>
+              </tbody>
+            </table>
           </div>
-
-          <div class="filter-item">
-            <label for="user-type">Tipo de Usuario</label>
-            <select id="user-type">
-              <option>Cualquiera</option>
-              <option>Administrador</option>
-              <option>Usuario Regular</option>
-            </select>
-          </div>
-  
-
-        </div>
-  
-
-        <!-- Opciones de selección para mostrar los campos -->
-        <div class="checkbox-options">
-          <div class="checkbox-option">
-            <input type="checkbox" id="show-user-type" checked>
-            <label for="show-user-type">Mostrar Tipo de Usuario</label>
-          </div>
-          <div class="checkbox-option">
-            <input type="checkbox" id="show-last-login">
-            <label for="show-last-login">Mostrar Último Inicio de Sesión</label>
-          </div>
-          <div class="checkbox-option">
-            <input type="checkbox" id="show-status">
-            <label for="show-status">Mostrar Estado de la Cuenta</label>
-          </div>
-        </div>
-  
-        <div class="search-buttons">
-          <button class="clear-button">Limpiar</button>
-          <button class="search-button">Buscar</button>
-        </div>
+       
       </div>
     </main>
   </div>

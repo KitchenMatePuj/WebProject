@@ -20,12 +20,19 @@ export interface TotalRecipeCount {
   total_recipes: number;
 }
 
+export interface Ingredient {
+  name: string;
+  measurement_unit: string;
+  ingredient_id: number;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   // Ajusta esta URL según tu backend (puerto, subruta, etc.)
-  private baseUrl = 'http://localhost:8004';
+  private baseUrl = 'http://localhost:8001';
 
   constructor(private http: HttpClient) {} 
 
@@ -41,6 +48,10 @@ export class RecipeService {
     return this.http.get<TotalRecipeCount>(
       `${this.baseUrl}/recipes/statistics/total`
     );
+  }
+
+  getAllIngredients(): Observable<Ingredient[]> {
+    return this.http.get<Ingredient[]>(`${this.baseUrl}/ingredients/`);
   }
 
 
