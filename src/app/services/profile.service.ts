@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; // Ajusta la ruta según tu estructura de carpetas
 
 export interface Profile {
   profile_id?: number;
@@ -23,7 +24,7 @@ export interface MostSaved {
   providedIn: 'root'
 })
 export class ProfileService {
-  private baseUrl = 'http://localhost:8000'; // Ajusta a tu microservicio
+  private baseUrl = `${environment.profileapiBaseUrl}`;
 
   constructor(private http: HttpClient) {}
 

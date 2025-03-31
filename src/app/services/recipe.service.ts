@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; // Ajusta la ruta según tu estructura de carpetas
 
 // (Opcional) Define una interfaz para tus recetas
 export interface Recipe {
@@ -32,7 +33,7 @@ export interface Ingredient {
 })
 export class RecipeService {
   // Ajusta esta URL según tu backend (puerto, subruta, etc.)
-  private baseUrl = 'http://localhost:8001';
+  private baseUrl = `${environment.recipeBaseUrl}`;
 
   constructor(private http: HttpClient) {} 
 
