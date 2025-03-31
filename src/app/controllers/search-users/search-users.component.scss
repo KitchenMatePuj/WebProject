@@ -85,6 +85,29 @@
       }
     }
 
+    /* Tabla de usuarios */
+    .results-container {
+      margin-top: 30px;
+      overflow-x: auto;
+      border-top: 1px solid #ddd;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+        }
+      }
+    }
+
     .filter-container {
         display: flex;
         flex-direction: column;
@@ -178,6 +201,7 @@
           }
         }
       }
+      
   
       .search-buttons {
         display: flex;

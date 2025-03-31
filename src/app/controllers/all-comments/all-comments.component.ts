@@ -39,10 +39,6 @@ export class AllCommentsComponent {
     goToComments() {
       this.router.navigate(['/comments'])   // Redirige a comentarios
     }
-
-    goToAllUsers() {
-      this.router.navigate(['/all-users'])   // Redirige a todos los usuarios
-    }
     
     goToSearchComments() {
       this.router.navigate(['/comments'])   // Redirige a buscar los comentarios

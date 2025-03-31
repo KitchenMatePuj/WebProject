@@ -83,10 +83,6 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/search-users']);  // Redirige a la lista de usuarios
   }
 
-  goToAllUsers() {
-    this.router.navigate(['/all-users']);  // Redirige a la lista de todos los usuarios
-  }
-
   goToDashboard() {
     this.router.navigate(['/dashboard']);  // Redirige al dashboard
   }
