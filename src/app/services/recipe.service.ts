@@ -20,14 +20,6 @@ export interface TotalRecipeCount {
   total_recipes: number;
 }
 
-<<<<<<< HEAD
-export interface RecipesSearch {
-  title: string;
-  cooking_time: number;
-  ingredient: string;
-}
-
-=======
 export interface Ingredient {
   name: string;
   measurement_unit: string;
@@ -35,17 +27,12 @@ export interface Ingredient {
 }
 
 
->>>>>>> develop-carlos
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   // Ajusta esta URL según tu backend (puerto, subruta, etc.)
-<<<<<<< HEAD
-  private baseUrl = 'http://localhost:8000';
-=======
   private baseUrl = 'http://localhost:8001';
->>>>>>> develop-carlos
 
   constructor(private http: HttpClient) {} 
 
@@ -62,15 +49,13 @@ export class RecipeService {
       `${this.baseUrl}/recipes/statistics/total`
     );
   }
-
-<<<<<<< HEAD
-    /**
+   /**
    * Busca recetas usando filtros opcionales.
    * @param title Filtro por título (opcional)
    * @param cooking_time Filtro por tiempo de cocción (opcional)
    * @param ingredient Filtro por ingrediente (opcional)
    */
-  searchRecipes(title?: string, cooking_time?: number, ingredient?: string): Observable<Recipe[]> {
+   searchRecipes(title?: string, cooking_time?: number, ingredient?: string): Observable<Recipe[]> {
     let params = new HttpParams();
     if (title) {
       params = params.set('title', title);
@@ -83,11 +68,10 @@ export class RecipeService {
     }
     // El endpoint según OpenAPI es /recipes/search
     return this.http.get<Recipe[]>(`${this.baseUrl}/recipes/search`, { params });
-=======
-  getAllIngredients(): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(`${this.baseUrl}/ingredients/`);
->>>>>>> develop-carlos
-  }
+   }
+    getAllIngredients(): Observable<Ingredient[]> {
+      return this.http.get<Ingredient[]>(`${this.baseUrl}/ingredients/`);
+    }
 
 
 }

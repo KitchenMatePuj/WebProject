@@ -22,7 +22,7 @@ export class SearchUsersComponent {
   accountStatusSearch: string = '';
   allergyNameSearch: string = '';
 
-  ingredients: Ingredient[] = []; // Cambia el tipo según tu modelo de datos
+  ingredients: Ingredient[] = [];
 
   userIds: string[] = []; 
 
