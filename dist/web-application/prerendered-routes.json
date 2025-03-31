@@ -3,8 +3,6 @@
     "/": {},
     "/actuacion": {},
     "/all-comments": {},
-    "/all-recipes": {},
-    "/all-users": {},
     "/campaign-creation": {},
     "/campaign-search": {},
     "/comments": {},
@@ -18,9 +16,7 @@
     "/profile": {},
     "/recipes": {},
     "/search-users": {},
-    "/storage": {},
     "/total-reports": {},
-    "/trend-analysis": {},
-    "/user": {}
+    "/trend-analysis": {}
   }
 }

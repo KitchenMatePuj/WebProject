@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    profileapiBaseUrl: 'apigateway-service-production.up.railway.app/profile/',
-    recipeBaseUrl: 'apigateway-service-production.up.railway.app/recipe/',
+    profileapiBaseUrl: 'https://apigateway-service-production.up.railway.app/profile',
+    recipeBaseUrl: 'https://apigateway-service-production.up.railway.app/recipe',
   };
   
