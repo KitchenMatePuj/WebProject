@@ -5,11 +5,10 @@
   .sidebar {
     width: 250px;
     background: #F1F1F1;
-    color: white;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Asegura que los elementos se alineen desde el inicio */
+    justify-content: flex-start;
     height: 100vh;
 
     .profile {
@@ -36,12 +35,12 @@
       background-color: #ffffff;
       border-radius: 10px;
       padding: 20px;
-      margin-bottom: 20px; /* Espacio entre el menú y el contenedor de filtros */
+      margin-bottom: 20px;
 
       ul {
         list-style: none;
         padding: 0;
-        margin-bottom: 20px;
+        margin: 0;
 
         li {
           margin-bottom: 15px;
@@ -73,65 +72,6 @@
       }
     }
 
-    .filter-container {
-      background: white; /* Fondo blanco */
-      border-radius: 5px;
-      padding: 20px;
-      box-shadow: none;
-      color: black;
-      margin-bottom: 20px; /* Espacio entre el contenedor de filtros y la información de la versión */
-
-      .filter-item {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-        color: black; /* Color de la letra */
-
-        h4 {
-          margin-bottom: 5px;
-          font-weight: bold;
-        }
-
-        label {
-          margin-left: 5px;
-        }
-
-        input[type="checkbox"] {
-          margin-right: 10px;
-        }
-
-        div {
-          display: flex;
-          align-items: center;
-          margin-bottom: 5px;
-        }
-      }
-
-      .search-buttons {
-        display: flex;
-        gap: 20px;
-        margin-top: 20px;
-
-        .clear-button,
-        .search-button {
-          padding: 10px 20px;
-          font-size: 16px;
-          border-radius: 5px;
-          border: none;
-          cursor: pointer;
-        }
-
-        .clear-button {
-          background-color: #f4f4f4;
-        }
-
-        .search-button {
-          background-color: #4caf50;
-          color: white;
-        }
-      }
-    }
-
     .version-info {
       text-align: center;
       background: white;
@@ -148,34 +88,79 @@
     display: flex;
     flex-direction: column;
 
-    .top-bar {
+    .search-reports-container {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 0 auto 20px;
+      width: 100%;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding: 0 20px;
+      flex-direction: column;
 
-      .search-bar {
-        width: 80%;
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: none;
+      h3 {
+        margin-bottom: 15px;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        label {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        select, input {
+          padding: 8px;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          font-size: 14px;
+        }
+      }
+
+      .search-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+
+        .clear-button,
+        .search-button {
+          padding: 10px 15px;
+          font-size: 14px;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+        }
+
+        .clear-button {
+          background-color: #f4f4f4;
+        }
+
+        .search-button {
+          background-color: #4caf50;
+          color: white;
+        }
       }
     }
 
-    .payments-table-container {
-      flex: 1;
-      background-color: white; /* Fondo blanco */
+    .reports-table-container {
+      background: white;
       padding: 20px;
-      border-radius: 5px;
-      box-shadow: none;
-      margin-top: 20px; /* Espacio entre la barra superior y la tabla */
+      border-radius: 10px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      overflow-x: auto;
 
-      .payments-table {
+      h2 {
+        margin-bottom: 10px;
+      }
+
+      table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: 20px;
 
         th {
           background-color: #f4f4f4;
@@ -192,26 +177,27 @@
         }
 
         tr:nth-child(even) {
-          background-color: #f9f9f9; /* Color gris para filas pares */
+          background-color: #f9f9f9;
         }
 
         tr:nth-child(odd) {
-          background-color: #ffffff; /* Color blanco para filas impares */
+          background-color: #ffffff;
         }
+
         button {
-          background: none; /* Sin fondo */
-          border: none; /* Sin borde */
-          color: black; /* Color del texto */
+          background: none;
+          border: none;
+          color: black;
           cursor: pointer;
-          font: bold;
-          padding: 0; /* Sin padding */
-          font-size: inherit; /* Hereda el tamaño de fuente */
-          text-decoration: none; /* Sin subrayado */
+          font-weight: bold;
+          padding: 0;
+          font-size: inherit;
+          text-decoration: none;
           transition: color 0.3s ease, text-decoration 0.3s ease;
-      
+
           &:hover {
-            color: green; /* Color del hipervínculo al pasar el cursor */
-            text-decoration: underline; /* Subrayado al pasar el cursor */
+            color: green;
+            text-decoration: underline;
           }
         }
       }

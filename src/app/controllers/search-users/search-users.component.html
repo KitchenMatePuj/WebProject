@@ -23,69 +23,51 @@
     </nav>
   
     <main class="content">
-      <div class="top-bar">
-        <input class="search-bar" type="text" placeholder="Búsqueda rápida">
-      </div>
+
   
       <!-- Aquí empieza la sección específica de la búsqueda de usuarios -->
       <div class="search-users-container">
-        <div class="tabs">
-          <button class="tab" [ngClass]="{'active': isSearchActive}">Encontrar usuarios</button>
-        </div>
-  
-        <!-- Filtros de búsqueda -->
-         <div class="filter-container">
-            <div class="search-filters">
-              <form #searchForm="ngForm" (ngSubmit)="searchUsers()">
-
-                <div class="filter-container">
-                  <div class="search-filters">
-                    <div class="filter-item">
-                      <label for="firstName">Nombre</label>
-                      <input id="firstName" name="firstName" type="text" placeholder="Andrew" [(ngModel)]="firstNameSearch">
-                    </div>
-              
-                    <div class="filter-item">
-                      <label for="lastName">Apellido</label>
-                      <input id="lastName" name="lastName" type="text" placeholder="Salgado" [(ngModel)]="lastNameSearch">
-                    </div>
-              
-                    <div class="filter-item">
-                      <label for="email">Correo electrónico</label>
-                      <input id="email" name="email" type="email" placeholder="ejemplo@mail.com" [(ngModel)]="emailSearch">
-                    </div>
-              
-                    <div class="filter-item">
-                      <label for="accountStatus">Estado de la Cuenta</label>
-                      <select id="accountStatus" name="accountStatus" [(ngModel)]="accountStatusSearch">
-                        <option value="active">active</option>
-                        <option value="inactive">inactive</option>
-                      </select>
-                    </div>
-                  </div>
-              
-                  <div class="filter-item">
-                    <label for="allergyName">Alergias</label>
-                    <select id="allergyName" name="allergyName" [(ngModel)]="allergyNameSearch">
-                      <option *ngFor="let ingredient of ingredients" [value]="ingredient.name">
-                        {{ ingredient.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              
-                <!-- Botones -->
-                <div class="search-buttons">
-                  <button class="clear-button" type="button" (click)="clearForm()">Limpiar</button>
-                  <button class="search-button" type="submit">Buscar</button>
-                </div>
-              
-              </form>
+        <!-- Caja de búsqueda estilo card, igual que recetas -->
+        <div class="search-box">
+          <h3>Búsqueda de usuarios</h3>
+          <form #searchForm="ngForm" (ngSubmit)="searchUsers()">
+            <div class="input-group">
+              <label for="firstName">Nombre</label>
+              <input id="firstName" name="firstName" type="text" placeholder="Andrew" [(ngModel)]="firstNameSearch">
             </div>
-          </div>
+            <div class="input-group">
+              <label for="lastName">Apellido</label>
+              <input id="lastName" name="lastName" type="text" placeholder="Salgado" [(ngModel)]="lastNameSearch">
+            </div>
+            <div class="input-group">
+              <label for="email">Correo electrónico</label>
+              <input id="email" name="email" type="email" placeholder="ejemplo@mail.com" [(ngModel)]="emailSearch">
+            </div>
+            <div class="input-group">
+              <label for="accountStatus">Estado de la Cuenta</label>
+              <select id="accountStatus" name="accountStatus" [(ngModel)]="accountStatusSearch">
+                <option value="active">active</option>
+                <option value="inactive">inactive</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="allergyName">Alergias</label>
+              <select id="allergyName" name="allergyName" [(ngModel)]="allergyNameSearch">
+                <option *ngFor="let ingredient of ingredients" [value]="ingredient.name">
+                  {{ ingredient.name }}
+                </option>
+              </select>
+            </div>
+            <div class="search-buttons">
+              <button class="clear-button" type="button" (click)="clearFilters()">Limpiar</button>
+              <button class="search-button" type="submit">Buscar</button>
+            </div>
+          </form>
+        </div>
 
                   <!-- Tabla de usuarios -->
-          <div class="results-container">
+          <div class="results-container" *ngIf="foundProfiles && foundProfiles.length > 0">
+            <h2>Resultados de búsqueda</h2>
             <h3>Encontrados: {{ foundProfiles.length }}</h3>
 
             <table *ngIf="foundProfiles.length > 0">

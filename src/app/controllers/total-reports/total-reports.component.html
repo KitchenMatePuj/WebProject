@@ -12,59 +12,6 @@
       </ul>
     </div>
 
-    <!-- Contenedor de filtros -->
-    <div class="filter-container">
-      <h2>Filtros</h2>
-      <div class="filter-item">
-        <h4>Tipo de Reporte</h4>
-        <div>
-          <input id="type" type="checkbox" name="receta">
-          <label for="receta">Receta</label>
-        </div>
-        <div>
-          <input id="comment" type="checkbox" name="comentario">
-          <label for="comentario">Comentario</label>
-        </div>
-        <div>
-          <input id="other" type="checkbox" name="otro">
-          <label for="otro">Otro</label>
-        </div>
-        <h4>Tipo de Usuario</h4>
-        <div>
-          <input id="client" type="checkbox" name="cliente">
-          <label for="cliente">Cliente</label>
-        </div>
-        <div>
-          <input id="admin" type="checkbox" name="admin">
-          <label for="admin">Admin</label>
-        </div>
-        <h4>Estado</h4>
-        <div>
-          <input id="pending" type="checkbox" name="pendiente">
-          <label for="pendiente">Pendiente</label>
-        </div>
-        <div>
-          <input id="erased" type="checkbox" name="eliminado">
-          <label for="eliminado">Eliminado</label>
-        </div>
-        <div>
-          <input id="solved" type="checkbox" name="resuelto">
-          <label for="resuelto">Resuelto</label>
-        </div>
-        <h4>Fecha de Reporte</h4>
-        <div>
-          <input id="date" type="checkbox" name="fecha">
-          <label for="fecha">dd/mm/aaaa</label>
-        </div>
-      </div>
-      
-    <div class="search-buttons">
-      <button class="clear-button">Limpiar</button>
-      <button class="search-button">Buscar</button>
-    </div>
-    </div>
-
-
     <div class="version-info">
       <p>KitchenMate</p>
       <p>Versión 1.0.0.11</p>
@@ -72,45 +19,68 @@
   </nav>
 
   <main class="content">
-    <div class="top-bar">
-      <input class="search-bar" type="text" placeholder="Búsqueda rápida">
+    <div class="search-reports-container">
+      <div class="search-box">
+        <h3>Búsqueda de reportes</h3>
+        <form #searchForm="ngForm" (ngSubmit)="searchReports()">
+          <div class="input-group">
+            <label for="reportType">Tipo de Reporte</label>
+            <select id="reportType" name="reportType" [(ngModel)]="reportTypeSearch">
+              <option value="receta">Receta</option>
+              <option value="comentario">Comentario</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="userType">Tipo de Usuario</label>
+            <select id="userType" name="userType" [(ngModel)]="userTypeSearch">
+              <option value="cliente">Cliente</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="status">Estado</label>
+            <select id="status" name="status" [(ngModel)]="statusSearch">
+              <option value="pendiente">Pendiente</option>
+              <option value="eliminado">Eliminado</option>
+              <option value="resuelto">Resuelto</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="reportDate">Fecha de Reporte</label>
+            <input id="reportDate" name="reportDate" type="date" [(ngModel)]="reportDateSearch">
+          </div>
+          <div class="search-buttons">
+            <button class="clear-button" type="button" (click)="clearFilters()">Limpiar</button>
+            <button class="search-button" type="submit">Buscar</button>
+          </div>
+        </form>
+      </div>
     </div>
 
-    <!-- Nuevo contenedor para la tabla -->
-    <div class="payments-table-container">
-      <table class="payments-table">
+    <div class="reports-table-container" *ngIf="foundReports && foundReports.length > 0">
+      <h2>Resultados de búsqueda</h2>
+      <h3>Encontrados: {{ foundReports.length }}</h3>
+      <table>
         <thead>
           <tr>
-            <th>Columna 1</th>
-            <th>Columna 2</th>
-            <th>Columna 3</th>
-            <th>Columna 4</th>
-            <th>Columna 5</th>
-            <th>Columna 6</th>
-            <th>Columna 7</th>
-
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Usuario</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Dato 1</td>
-            <td>Dato 2</td>
-            <td>Dato 3</td>
-            <td>Dato 4</td>
-            <td>Dato 5</td>
-            <td>Dato 6</td>
-            <b><td><button (click)="goToDetails()">Ver detalles</button></td></b>
+          <tr *ngFor="let report of foundReports">
+            <td>{{ report.id }}</td>
+            <td>{{ report.type }}</td>
+            <td>{{ report.user }}</td>
+            <td>{{ report.status }}</td>
+            <td>{{ report.date }}</td>
+            <td><button (click)="goToDetails()">Ver detalles</button></td>
           </tr>
-          <tr>
-            <td>Dato 1</td>
-            <td>Dato 2</td>
-            <td>Dato 3</td>
-            <td>Dato 4</td>
-            <td>Dato 5</td>
-            <td>Dato 6</td>
-            <b><td><button (click)="goToDetails()">Ver detalles</button></td></b>
-          </tr>
-          <!-- Más filas aquí -->
         </tbody>
       </table>
     </div>
