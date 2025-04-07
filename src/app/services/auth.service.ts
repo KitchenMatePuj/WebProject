@@ -9,13 +9,17 @@ import { environment } from '../../environments/environment';
 export class AuthService {
 
   private apiUrl = environment.authBaseUrl;
-  console.log('url-auth: ',apiUrl);
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {
+    console.log('url-auth:', this.apiUrl); // Imprime la URL base usada para login
+  }
 
   login(username: string, password: string): Observable<any> {
     const formData = new FormData();
     formData.append('username', username);
     formData.append('password', password);
+
+    console.log('FormData:', { username, password }); // Para verificar los valores enviados
 
     return this.http.post(this.apiUrl, formData).pipe(
       tap((response: any) => {
