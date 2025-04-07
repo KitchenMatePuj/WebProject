@@ -1,82 +1,77 @@
 <div class="comments-container">
-    <nav class="sidebar">
-      <div class="profile" (click)="goToProfile()">
-        <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
-        <span class="profile-name">Admin</span>
-      </div>
-  
-      <div class="menu-container">
-        <ul>
+  <nav class="sidebar">
+    <div class="profile" (click)="goToProfile()">
+      <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+      <span class="profile-name">Admin</span>
+    </div>
 
-          <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Dashboard</a></li>
-          <li><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Recetas</a></li>
-          <li><a routerLink="/comments"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Administración</a></li>
-          <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
-        </ul>
-      </div>
-  
-      <div class="version-info">
-        <p>KitchenMate</p> 
-        <p>Versión 1.0.0.11</p>
-      </div>
-    </nav>
-  
-    <main class="content">
-      <div class="top-bar">
-        <input class="search-bar" type="text" placeholder="Búsqueda rápida">
-      </div>
- 
-      <div class="search_comments-container">
-        <div class="tabs">
-        <button class="tab" [ngClass]="{'active': isSearchActive}">Encontrar comentarios</button>
-        <button class="tab" (click)="goToAllComments()" [ngClass]="{'active': !isSearchActive}">Todos los comentarios</button>
-        </div>
-        </div>
+    <div class="menu-container">
+      <ul>
 
-                <!-- Filtros de búsqueda -->
-                  <div class="filter-container">
-                    <b><p>Filtros</p></b>
-                  <div class="search-filters">
-                    <div class="filter-item">
-                      <label for="name">Nombre del Autor</label>
-                      <input id="name" type="text" placeholder="Buscar...">
-                    </div>
-            
-                    <div class="filter-item">
-                      <label for="status">Estado</label>
-                      <select id="status">
-                        <option>Todos</option>
-                        <option>Subida</option>
-                        <option>Eliminada</option>
-                        <option>Baneada</option>
-                      </select>
-                    </div>
-          
-           
-                    <div class="filter-item">
-                      <label for="type">Tipo de Comentario</label>
-                      <select id="type">
-                        <option>Respuesta</option>
-                        <option>Respuesta de respuesta</option>
-                        <option>Comentario</option>
-                      </select>
-                    </div>
+        <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Dashboard</a></li>
+        <li><a (click)="goToSearchUsers()"><img class="sidebar-icon" src="assets/icons/users-icon.png">Usuarios</a></li>
+        <li><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Recetas</a></li>
+        <li><a routerLink="/comments"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Administración</a></li>
+        <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+
+    <div class="version-info">
+      <p>KitchenMate</p> 
+      <p>Versión 1.0.0.11</p>
+    </div>
+  </nav>
+
+  <main class="content">
+
+
+    <div class="search_comments-container">
+
+
+              <!-- Filtros de búsqueda -->
+                <div class="filter-container">
+                  <h3>Filtros</h3>  
+                <div class="search-filters">
+                  <div class="filter-item">
+                    <label for="name">Nombre del Autor</label>
+                    <input id="name" type="text" placeholder="Buscar...">
                   </div>
           
-                  <div class="search-filters">
-                    <div class="filter-item">
-                      <label for="keywords">Palabras clave</label>
-                      <input id="keywords" type="text" placeholder="Buscar...">
-                    </div>
-            
+                  <div class="filter-item">
+                    <label for="status">Estado</label>
+                    <select id="status">
+                      <option>Todos</option>
+                      <option>Subida</option>
+                      <option>Eliminada</option>
+                      <option>Baneada</option>
+                    </select>
+                  </div>
+        
+         
+                  <div class="filter-item">
+                    <label for="type">Tipo de Comentario</label>
+                    <select id="type">
+                      <option>Respuesta</option>
+                      <option>Respuesta de respuesta</option>
+                      <option>Comentario</option>
+                    </select>
+                  </div>
+                </div>
+        
+                <div class="search-filters">
+                  <div class="filter-item">
+                    <label for="keywords">Palabras clave</label>
+                    <input id="keywords" type="text" placeholder="Buscar...">
+                  </div>
           
-                  </div>
-            
+        
+                </div>
+          
 
-                  <div class="search-buttons">
-                    <button class="clear-button">Limpiar</button>
-                    <button class="search-button">Buscar</button>
-                  </div>
+                <div class="search-buttons">
+                  <button class="clear-button">Limpiar</button>
+                  <button class="search-button">Buscar</button>
+                </div>
 
-            
-    
+          
+  

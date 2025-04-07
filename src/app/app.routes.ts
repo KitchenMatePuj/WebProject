@@ -14,7 +14,6 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component'; 
 import { RecipesComponent } from './controllers/recipes/recipes.component';
 import { CommentsComponent } from './controllers/comments/comments.component';
-import { AllCommentsComponent } from './controllers/all-comments/all-comments.component';
 import { CampaignSearchComponent } from './controllers/campaign-search/campaign-search.component';
 import { CampaignCreationComponent } from './controllers/campaign-creation/campaign-creation.component';
 import { PerformanceReportComponent } from './controllers/performance-report/performance-report.component';
@@ -36,7 +35,6 @@ export const routes: Routes = [
     { path: 'search-users', component: SearchUsersComponent, canActivate: [authGuard] },
     { path: 'recipes', component: RecipesComponent, canActivate: [authGuard]},
     { path: 'comments', component: CommentsComponent, canActivate: [authGuard]},
-    { path: 'all-comments', component: AllCommentsComponent, canActivate: [authGuard]},
     { path: 'campaign-search', component: CampaignSearchComponent, canActivate: [authGuard]},
     { path: 'campaign-creation', component: CampaignCreationComponent, canActivate: [authGuard]},
     { path: 'performance-report', component: PerformanceReportComponent, canActivate: [authGuard]},

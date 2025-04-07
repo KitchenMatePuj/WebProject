@@ -38,5 +38,8 @@ export class CommentsComponent {
   goToAllComments() {
     this.router.navigate(['/all-comments']); // Redirige a todos los comentarios
   }
-
+  
+  goToSearchUsers() {
+    this.router.navigate(['/search-users']);  // Redirige a la lista de todos los usuarios
+  }
 }

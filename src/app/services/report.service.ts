@@ -1,48 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// Ajusta esta interfaz a lo que tu microservicio de reports realmente maneje.
-// Por ejemplo, si tus reports tienen campos como 'type', 'date', 'description', etc.
 export interface Report {
-  id?: number;       // si es autoincremental en la base
-  title: string;
-  content: string;
-  created_at?: string; // Ajusta según tus campos reales
+  report_id: 0,
+  reporter_user_id: "string",
+  resource_type: "string",
+  description: "string",
+  status: "string",
+  created_at: "2025-04-07T04:59:00.207Z",
+  updated_at: "2025-04-07T04:59:00.207Z"
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReportService {
-  // Ajusta la URL base al endpoint de tu microservicio de Reports:
-  // podría ser "http://localhost:8000/reports" o el puerto que uses.
-  private baseUrl = 'http://localhost:8000/reports';
+  public baseUrl = 'http://localhost:8001/reports';
 
   constructor(private http: HttpClient) {}
 
-  // GET: Obtener todos los reports
-  getAllReports(): Observable<Report[]> {
-    return this.http.get<Report[]>(this.baseUrl);
-  }
 
-  // GET: Obtener un report por su ID
-  getReportById(id: number): Observable<Report> {
-    return this.http.get<Report>(`${this.baseUrl}/${id}`);
+  // NUEVO: Buscar reports por tipo, estado y fecha
+  searchReports(resource_type?: string, status?: string, created_at?: string, p0?: string | undefined, p1?: string | undefined, p2?: string | undefined): Observable<Report[]> {
+    let params = new HttpParams();
+    if (resource_type) params = params.set('type', resource_type);
+    if (status) params = params.set('status', status);
+    if (created_at) params = params.set('date', created_at);
+    
+    return this.http.get<Report[]>(`${this.baseUrl}/search`, { params });
   }
-
-  // POST: Crear un nuevo report
-  createReport(report: Report): Observable<Report> {
-    return this.http.post<Report>(this.baseUrl, report);
   }
-
-  // PUT: Actualizar un report existente
-  updateReport(id: number, report: Report): Observable<Report> {
-    return this.http.put<Report>(`${this.baseUrl}/${id}`, report);
-  }
-
-  // DELETE: Eliminar un report
-  deleteReport(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  }
-}

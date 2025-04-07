@@ -80,6 +80,7 @@
       border-radius: 5px;
       font-size: 14px;
       color: black;
+      margin-bottom: 85px; // Espacio para el pie de página
     }
   }
 
@@ -180,7 +181,6 @@
       button[type='button'] {
         background: #f4f4f4;
         color: #333;
-        margin-left: 10px;
 
         &:hover {
           background: #eaeaea;
