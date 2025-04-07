@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { environment } from '../../environments/environment'; 
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   private apiUrl = environment.authBaseUrl;
 
   constructor(private http: HttpClient) {
-    console.log('url-auth:', this.apiUrl); // Imprime la URL base usada para login
+    // ✅ Aquí sí puedes imprimir
+    console.log('url-auth: ', this.apiUrl);
   }
 
   login(username: string, password: string): Observable<any> {
     const formData = new FormData();
     formData.append('username', username);
     formData.append('password', password);
-
-    console.log('FormData:', { username, password }); // Para verificar los valores enviados
 
     return this.http.post(this.apiUrl, formData).pipe(
       tap((response: any) => {
