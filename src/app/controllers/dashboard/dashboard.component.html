@@ -40,10 +40,6 @@
   </nav>
   
   <main class="content">
-    <!-- Barra superior con búsqueda -->
-    <div class="top-bar">
-      <input class="search-bar" type="text" placeholder="Búsqueda rápida">
-    </div>
   
     <!-- Contenido principal: Cards del Dashboard -->
     <div class="dashboard-cards">
@@ -76,20 +72,11 @@
       <div class="card">
         <h3>Recetas más guardadas</h3>
         <div class="card-content">
-          <table>
-            <thead>
-              <tr>
-                <th>Receta ID</th>
-                <th>Veces Guardada</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of mostSaved">
-                <td>{{ item.recipe_id }}</td>
-                <td>{{ item.count }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <canvas baseChart
+                  [data]="mostSavedDonutData"
+                  [options]="mostSavedDonutOptions"
+                  chartType="doughnut">
+          </canvas>
         </div>
       </div>
   

@@ -13,6 +13,12 @@ import { Report, ReportService } from '../../services/report.service';
 
 export class TotalReportsComponent {
 
+reportTypeSearch: any;
+userTypeSearch: any;
+statusSearch: any;
+reportDateSearch: any;
+foundReports: any;
+
 // Variables para filtros
   reporter_user_id: string = "string";
   resource_type: string = "string";
@@ -32,12 +38,6 @@ this.statusSearch = '';
 this.reportDateSearch = '';
 this.searchResults = [];
 }
-
-reportTypeSearch: any;
-userTypeSearch: any;
-statusSearch: any;
-reportDateSearch: any;
-foundReports: any;
 
   constructor(private router: Router, private reportService: ReportService) {}
 
@@ -60,6 +60,26 @@ foundReports: any;
       });
     }
   
+  
+
+  searchReports(): void {
+    const filters = {
+      reportType: this.reportTypeSearch,
+      status: this.statusSearch,
+      reportDate: this.reportDateSearch,
+    };
+
+    this.reportService.searchReports(JSON.stringify(filters)).subscribe({
+      next: (data: any) => {
+        this.foundReports = data;
+        console.log('Reportes encontrados:', data);
+      },
+      error: (err: any) => {
+        console.error('Error al buscar reportes:', err);
+      },
+    });
+  }
+
   
 
 

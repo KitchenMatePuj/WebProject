@@ -42,4 +42,8 @@ export class CommentsComponent {
   goToSearchUsers() {
     this.router.navigate(['/search-users']);  // Redirige a la lista de todos los usuarios
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b953cc92d3b0bac36eee3bc5bed3ad706de8dc33

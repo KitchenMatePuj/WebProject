@@ -1,18 +1,18 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Profile, ProfileService } from '../../services/profile.service';
-import { MostSaved } from '../../services/profile.service';
 import { CommonModule } from '@angular/common';
+import { Profile, ProfileService, MostSaved } from '../../services/profile.service';
 import { RecipeService, Recipe, TotalRecipeCount } from '../../services/recipe.service';
-
-
+import { MostSavedDonutComponent } from '../most-saved-donut/most-saved-donut.component';
+import { ChartOptions, ChartData, Chart } from 'chart.js';
+import { NgChartsModule } from 'ng2-charts';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, NgChartsModule]
 })
 export class DashboardComponent implements OnInit {
   profiles: Profile[] = [];
@@ -20,7 +20,36 @@ export class DashboardComponent implements OnInit {
   recipes: Recipe[] = [];
   totalCount!: TotalRecipeCount;
 
-  constructor(private router: Router, private profileService: ProfileService, private recipeService: RecipeService
+     // IMPORTANTE: Usar 'doughnut' en vez de 'pie'
+  mostSavedDonutData: ChartData<'doughnut'> = {
+    labels: [],
+    datasets: [{
+      label: 'Recetas más guardadas',
+      data: [], // se llenará en loadMostSaved()
+      backgroundColor: [
+        '#66BB6A', // color 1
+        '#FFCA28', // color 2
+        '#29B6F6', // color 3
+        '#EF5350', // color 4
+        '#AB47BC', // color 5
+      ]
+    }]
+  };
+
+  mostSavedDonutOptions: ChartOptions<'doughnut'> = {
+    responsive: true,
+    // cutout crea el agujero interno (dona)
+    cutout: '60%',
+    plugins: {
+      legend: { position: 'top' },
+      title: { display: false }
+    }
+  };
+
+  constructor(
+    private router: Router,
+    private profileService: ProfileService,
+    private recipeService: RecipeService
   ) {}
 
   ngOnInit(): void {
@@ -43,21 +72,26 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-  
 
-  loadMostSaved() {
-    this.profileService.getMostSavedRecipes().subscribe({
+
+  loadMostSaved(): void {
+        this.profileService.getMostSavedRecipes().subscribe({
       next: (data: MostSaved[]) => {
         this.mostSaved = data;
         console.log('Most saved recipes:', this.mostSaved);
+        // Actualiza las etiquetas y los datos del gráfico
+        this.mostSavedDonutData.labels = data.map(item => item.title);
+        this.mostSavedDonutData.datasets[0].data = data.map(item => item.count);
       },
       error: (err: any) => {
-        console.error('Error:', err);
+        console.error('Error fetching most saved recipes', err);
       }
     });
   }
 
-  // Llamada al servicio para traer todos los perfiles
+  
+
+
   loadProfiles(): void {
     this.profileService.getAllProfiles().subscribe({
       next: (data) => {
@@ -70,17 +104,17 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('isAuthenticated');
     this.router.navigate(['/login']);
   }
 
-  goToProfile() {
-    this.router.navigate(['/profile']);  // Redirige al perfil del admin
+  goToProfile(): void {
+    this.router.navigate(['/profile']);
   }
 
-  goToSearchUsers() {
-    this.router.navigate(['/search-users']);  // Redirige a la lista de usuarios
+  goToSearchUsers(): void {
+    this.router.navigate(['/search-users']);
   }
 
   goToAllUsers() {
@@ -89,10 +123,11 @@ export class DashboardComponent implements OnInit {
 
   goToDashboard() {
     this.router.navigate(['/dashboard']);  // Redirige al dashboard
+
   }
   
-  goToRecipes() {
-    this.router.navigate(['/recipes']);  // Redirige a las recetas
+  goToRecipes(): void {
+    this.router.navigate(['/recipes']);
   }
   
   goToComments() {

@@ -64,6 +64,7 @@
           </div>
         </form>
       </div>
+<<<<<<< HEAD
 
                 <!-- Tabla de usuarios -->
         <div class="results-container" *ngIf="foundProfiles && foundProfiles.length > 0">
@@ -91,3 +92,82 @@
     </div>
   </main>
 </div>
+=======
+  
+      <div class="version-info">
+        <p>KitchenMate</p> 
+        <p>Versión 1.0.0.11</p>
+      </div>
+    </nav>
+  
+    <main class="content">
+
+  
+      <!-- Aquí empieza la sección específica de la búsqueda de usuarios -->
+      <div class="search-users-container">
+        <!-- Caja de búsqueda estilo card, igual que recetas -->
+        <div class="search-box">
+          <h3>Búsqueda de usuarios</h3>
+          <form #searchForm="ngForm" (ngSubmit)="searchUsers()">
+            <div class="input-group">
+              <label for="firstName">Nombre</label>
+              <input id="firstName" name="firstName" type="text" placeholder="Andrew" [(ngModel)]="firstNameSearch">
+            </div>
+            <div class="input-group">
+              <label for="lastName">Apellido</label>
+              <input id="lastName" name="lastName" type="text" placeholder="Salgado" [(ngModel)]="lastNameSearch">
+            </div>
+            <div class="input-group">
+              <label for="email">Correo electrónico</label>
+              <input id="email" name="email" type="email" placeholder="ejemplo@mail.com" [(ngModel)]="emailSearch">
+            </div>
+            <div class="input-group">
+              <label for="accountStatus">Estado de la Cuenta</label>
+              <select id="accountStatus" name="accountStatus" [(ngModel)]="accountStatusSearch">
+                <option value="active">active</option>
+                <option value="inactive">inactive</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="allergyName">Alergias</label>
+              <select id="allergyName" name="allergyName" [(ngModel)]="allergyNameSearch">
+                <option *ngFor="let ingredient of ingredients" [value]="ingredient.name">
+                  {{ ingredient.name }}
+                </option>
+              </select>
+            </div>
+            <div class="search-buttons">
+              <button class="clear-button" type="button" (click)="clearFilters()">Limpiar</button>
+              <button class="search-button" type="submit">Buscar</button>
+            </div>
+          </form>
+        </div>
+
+                  <!-- Tabla de usuarios -->
+          <div class="results-container" *ngIf="foundProfiles && foundProfiles.length > 0">
+            <h2>Resultados de búsqueda</h2>
+            <h3>Encontrados: {{ foundProfiles.length }}</h3>
+
+            <table *ngIf="foundProfiles.length > 0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre Completo</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let profile of foundProfiles">
+                  <td>{{ profile.keycloak_user_id }}</td>
+                  <td>{{ profile.first_name }} {{ profile.last_name }}</td>
+                  <td>{{ profile.email }}</td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </main>
+  </div>
+  
+>>>>>>> b953cc92d3b0bac36eee3bc5bed3ad706de8dc33
