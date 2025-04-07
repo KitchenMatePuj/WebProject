@@ -6,12 +6,11 @@ import { CommonModule } from '@angular/common'; // CommonModule
   selector: 'app-comments',
   imports: [CommonModule],
   templateUrl: './comments.component.html',
-  styleUrl: './comments.component.scss'
+  styleUrls: ['./comments.component.scss'] // corregido: styleUrls en plural
 })
 export class CommentsComponent {
 
   isSearchActive: boolean = true;
-
 
   constructor(private router: Router) {}
 
@@ -42,8 +41,4 @@ export class CommentsComponent {
   goToSearchUsers() {
     this.router.navigate(['/search-users']);  // Redirige a la lista de todos los usuarios
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b953cc92d3b0bac36eee3bc5bed3ad706de8dc33
