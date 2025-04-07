@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "build": "ng build",
+    "build": "ng build --configuration production && ng run web-application:server:production",
+    "start": "npm run build && node dist/web-application/server/server.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:web-application": "node dist/web-application/server/server.mjs"
