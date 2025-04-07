@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment'; // Ajusta la ruta según tu estructura de carpetas
+import { environment } from '../../environments/environment'; 
 
 export interface Profile {
   profile_id?: number;
@@ -12,7 +12,6 @@ export interface Profile {
   email?: string;
   phone?: string;
   account_status?: string;
-  // ... etc, lo que te interese
 }
 
 export interface MostSaved {

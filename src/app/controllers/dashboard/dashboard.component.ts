@@ -5,8 +5,6 @@ import { MostSaved } from '../../services/profile.service';
 import { CommonModule } from '@angular/common';
 import { RecipeService, Recipe, TotalRecipeCount } from '../../services/recipe.service';
 
-
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -44,7 +42,6 @@ export class DashboardComponent implements OnInit {
     });
   }
   
-
   loadMostSaved() {
     this.profileService.getMostSavedRecipes().subscribe({
       next: (data: MostSaved[]) => {
