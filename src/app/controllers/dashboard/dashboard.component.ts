@@ -7,7 +7,6 @@ import { MostSavedDonutComponent } from '../most-saved-donut/most-saved-donut.co
 import { ChartOptions, ChartData, Chart } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -74,8 +73,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+
   loadMostSaved(): void {
-    this.profileService.getMostSavedRecipes().subscribe({
+        this.profileService.getMostSavedRecipes().subscribe({
       next: (data: MostSaved[]) => {
         this.mostSaved = data;
         console.log('Most saved recipes:', this.mostSaved);
@@ -88,6 +88,9 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+  
+
 
   loadProfiles(): void {
     this.profileService.getAllProfiles().subscribe({

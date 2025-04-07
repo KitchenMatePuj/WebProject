@@ -3,7 +3,7 @@ import { LoginViewComponent } from './controllers/auth/login-view/login-view.com
 import { FirmaViewComponent } from './controllers/firma/firma-view/firma-view.component';
 import { ActuacionViewComponent } from './controllers/actuacion/actuacion-view/actuacion-view.component';
 import { ProcessViewComponent } from './controllers/process/process-view/process-view.component';
-import { authGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { DashboardComponent } from './controllers/dashboard/dashboard.component';
 import { ProfileComponent } from './controllers/profile/profile.component';  // Asegúrate de crear este componente
 import { SearchUsersComponent } from './controllers/search-users/search-users.component';  // Asegúrate de crear este componente
@@ -28,22 +28,22 @@ import { TrendAnalysisComponent } from './controllers/trend-analysis/trend-analy
 
 export const routes: Routes = [
     { path: 'login', component: LoginViewComponent },
-    { path: 'firma', component: FirmaViewComponent, canActivate: [authGuard] },
-    { path: 'actuacion', component: ActuacionViewComponent, canActivate: [authGuard] },
-    { path: 'process', component: ProcessViewComponent, canActivate: [authGuard] },
-    { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] }, 
+    { path: 'firma', component: FirmaViewComponent, canActivate: [AuthGuard] },
+    { path: 'actuacion', component: ActuacionViewComponent, canActivate: [AuthGuard] },
+    { path: 'process', component: ProcessViewComponent, canActivate: [AuthGuard] },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }, 
     { path: 'profile', component: ProfileComponent }, 
-    { path: 'search-users', component: SearchUsersComponent, canActivate: [authGuard] },
-    { path: 'recipes', component: RecipesComponent, canActivate: [authGuard]},
-    { path: 'comments', component: CommentsComponent, canActivate: [authGuard]},
-    { path: 'all-comments', component: AllCommentsComponent, canActivate: [authGuard]},
-    { path: 'campaign-search', component: CampaignSearchComponent, canActivate: [authGuard]},
-    { path: 'campaign-creation', component: CampaignCreationComponent, canActivate: [authGuard]},
-    { path: 'performance-report', component: PerformanceReportComponent, canActivate: [authGuard]},
-    { path: 'payments', component: PaymentsComponent, canActivate: [authGuard]},
-    { path: 'total-reports', component: TotalReportsComponent, canActivate: [authGuard]},
-    { path: 'details', component: DetailsComponent, canActivate: [authGuard]},
-    { path: 'trend-analysis', component: TrendAnalysisComponent, canActivate: [authGuard]},
+    { path: 'search-users', component: SearchUsersComponent, canActivate: [AuthGuard] },
+    { path: 'recipes', component: RecipesComponent, canActivate: [AuthGuard]},
+    { path: 'comments', component: CommentsComponent, canActivate: [AuthGuard]},
+    { path: 'all-comments', component: AllCommentsComponent, canActivate: [AuthGuard]},
+    { path: 'campaign-search', component: CampaignSearchComponent, canActivate: [AuthGuard]},
+    { path: 'campaign-creation', component: CampaignCreationComponent, canActivate: [AuthGuard]},
+    { path: 'performance-report', component: PerformanceReportComponent, canActivate: [AuthGuard]},
+    { path: 'payments', component: PaymentsComponent, canActivate: [AuthGuard]},
+    { path: 'total-reports', component: TotalReportsComponent, canActivate: [AuthGuard]},
+    { path: 'details', component: DetailsComponent, canActivate: [AuthGuard]},
+    { path: 'trend-analysis', component: TrendAnalysisComponent, canActivate: [AuthGuard]},
     { path: '', redirectTo: '/login', pathMatch: 'full' }
   ];
 
