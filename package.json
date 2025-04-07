@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "build": "ng build --configuration production && ng run web-application:server:production",
     "start": "npm run build && node dist/web-application/server/server.mjs",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:web-application": "node dist/web-application/server/server.mjs"
@@ -30,7 +30,6 @@
     "path": "^0.12.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "web-application": "file:",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
