@@ -23,8 +23,8 @@
 
   <main class="content">
 
-      <!-- Aquí empieza la sección específica de la búsqueda de recetas -->
-      <div class="search-users-container">
+    <!-- Aquí empieza la sección específica de la búsqueda de recetas -->
+    <div class="search-users-container">
       <div class="recipe-search-container">
         <div class="search-box">
           <h3>Búsqueda de recetas</h3>
@@ -46,7 +46,6 @@
           </form>
         </div>
       </div>
-
 
       <div class="search-results-container" *ngIf="searchResults && searchResults.length > 0">
         <h2>Resultados de búsqueda</h2>
@@ -73,41 +72,7 @@
           </tbody>
         </table>
       </div>
-  
-<<<<<<< HEAD
-=======
-      <div class="version-info">
-        <p>KitchenMate</p> 
-        <p>Versión 1.0.0.11</p>
-      </div>
-    </nav>
+    </div>
 
-    <main class="content">
-
-        <!-- Aquí empieza la sección específica de la búsqueda de recetas -->
-        <div class="search-users-container">
-        <div class="recipe-search-container">
-          <div class="search-box">
-            <h3>Búsqueda de recetas</h3>
-            <form (ngSubmit)="onSearch()">
-              <div class="input-group">
-                <label for="title">Título:</label>
-                <input type="text" id="title" [(ngModel)]="titleFilter" name="title" placeholder="Buscar receta">
-              </div>
-              <div class="input-group">
-                <label for="cookingTime">Tiempo de Cocción:</label>
-                <input type="number" id="cookingTime" [(ngModel)]="cookingTimeFilter" name="cookingTime" placeholder="Ej: 30">
-              </div>
-              <div class="input-group">
-                <label for="ingredient">Ingrediente:</label>
-                <input type="text" id="ingredient" [(ngModel)]="ingredientFilter" name="ingredient" placeholder="Ej: Pollo">
-              </div>
-              <button type="submit" (click)="onSearch()">Buscar</button>
-              <button type="button" (click)="clearFilters()">Limpiar</button>
-            </form>
-          </div>
-        </div>
->>>>>>> b953cc92d3b0bac36eee3bc5bed3ad706de8dc33
-
-
-  
+  </main>
+</div>
