@@ -1,49 +1,91 @@
 <div class="dashboard-container">
-  <nav class="sidebar">
-    <div class="profile" (click)="goToProfile()">
-      <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
-      <span class="profile-name">Admin</span>
-    </div>
+  <!-- Sidebar con clase dinámica 'expanded' controlada por Angular -->
+  <nav
+    class="sidebar"
+    [class.expanded]="hovering"
+    (mouseenter)="hovering = true"
+    (mouseleave)="hovering = false"
+  >
     <div class="menu-container">
-      <ul>
-        <li>
-          <a (click)="goToDashboard()">
-            <img class="sidebar-icon" src="/assets/icons/dashboard-icon.png" alt="Dashboard">Dashboard
-          </a>
-        </li>
-        <li>
-          <a (click)="goToSearchUsers()">
-            <img class="sidebar-icon" src="assets/icons/users-icon.png" alt="Usuarios">Usuarios
-          </a>
-        </li>
-        <li>
-          <a (click)="goToRecipes()">
-            <img class="sidebar-icon" src="assets/icons/recipes-icon.png" alt="Recetas">Recetas
-          </a>
-        </li>
-        <li>
-          <a (click)="goToComments()">
-            <img class="sidebar-icon" src="assets/icons/administration-icon.png" alt="Administración">Administración
-          </a>
-        </li>
-        <li>
-          <a (click)="logout()">
-            <img class="sidebar-icon" src="assets/icons/help-icon.png" alt="Cerrar Sesión">Cerrar Sesión
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="version-info">
-      <p>KitchenMate</p> 
-      <p>Versión 1.0.0.11</p>
+      <div class="menu-top">
+        <!-- Logo de la aplicación -->
+        <img
+          class="logo"
+          src="assets/icons/logo-icon.png"
+          alt="Logo de KitchenMate">
+        <!-- Perfil -->
+        <div class="profile" (click)="goToProfile()">
+          <img
+            class="profile-pic"
+            src="assets/icons/admin-profile.svg"
+            alt="Admin Profile"
+          />
+          <span class="profile-name">Admin</span>
+        </div>
+
+        <!-- Opciones de menú -->
+        <ul>
+          <li [class.active]="currentSection === 'dashboard'">
+            <a (click)="goToDashboard()">
+              <img class="sidebar-icon" src="assets/icons/dashboard-icon.png" />
+              <span class="menu-text">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="goToSearchUsers()">
+              <img
+                class="sidebar-icon"
+                src="assets/icons/users-icon.png"
+                alt="Usuarios"
+              />
+              <span class="menu-text">Usuarios</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="goToRecipes()">
+              <img
+                class="sidebar-icon"
+                src="assets/icons/recipes-icon.png"
+                alt="Recetas"
+              />
+              <span class="menu-text">Recetas</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="goToComments()">
+              <img
+                class="sidebar-icon"
+                src="assets/icons/administration-icon.png"
+                alt="Administración"
+              />
+              <span class="menu-text">Administración</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="logout()">
+              <img
+                class="sidebar-icon"
+                src="assets/icons/help-icon.png"
+                alt="Cerrar Sesión"
+              />
+              <span class="menu-text">Cerrar Sesión</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Versión -->
+      <div class="version-info">
+        <p>KitchenMate</p>
+        <p>Versión 1.0.0.11</p>
+      </div>
     </div>
   </nav>
-  
+
+  <!-- Contenido principal -->
   <main class="content">
-  
-    <!-- Contenido principal: Cards del Dashboard -->
     <div class="dashboard-cards">
-      <!-- Card: Estado de Perfiles -->
+      <!-- Estado de Perfiles -->
       <div class="card">
         <h3>Estado de Perfiles</h3>
         <div class="card-content">
@@ -67,20 +109,22 @@
           </table>
         </div>
       </div>
-  
-      <!-- Card: Recetas más guardadas -->
+
+      <!-- Recetas más guardadas -->
       <div class="card">
         <h3>Recetas más guardadas</h3>
         <div class="card-content">
-          <canvas baseChart
-                  [data]="mostSavedDonutData"
-                  [options]="mostSavedDonutOptions"
-                  chartType="doughnut">
+          <canvas
+            baseChart
+            [data]="mostSavedDonutData"
+            [options]="mostSavedDonutOptions"
+            chartType="doughnut"
+          >
           </canvas>
         </div>
       </div>
-  
-      <!-- Card: Recetas con buena valoración -->
+
+      <!-- Recetas con buena valoración -->
       <div class="card">
         <h3>Recetas con buena valoración</h3>
         <div class="card-content">
@@ -91,8 +135,8 @@
           </ul>
         </div>
       </div>
-  
-      <!-- Card: Total de Recetas -->
+
+      <!-- Total de Recetas -->
       <div class="card">
         <h3>Total de Recetas</h3>
         <div class="card-content">

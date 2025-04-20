@@ -45,6 +45,8 @@ export class DashboardComponent implements OnInit {
       title: { display: false }
     }
   };
+hovering = false; // Variable para controlar el hover
+currentSection = 'dashboard'; // lo actualizas al navegar
 
   constructor(
     private router: Router,
