@@ -21,6 +21,7 @@ export class SearchUsersComponent {
   emailSearch: string = '';
   accountStatusSearch: string = '';
   allergyNameSearch: string = '';
+  updatedAtSearch: string = '';
 
   ingredients: Ingredient[] = [];
 
@@ -34,6 +35,8 @@ export class SearchUsersComponent {
 
   ngOnInit(): void {
     this.loadIngredients();
+    this.searchUsers(); // Llama a la función de búsqueda al iniciar el componente
+
   }
 
       // Método opcional para limpiar los filtros y resultados
@@ -42,18 +45,36 @@ export class SearchUsersComponent {
         this.lastNameSearch = '';
         this.emailSearch = '';
         this.accountStatusSearch = '';
-        this.allergyNameSearch = '';
         this.foundProfiles = [];
-      }
-  
 
-  searchUsers() {
+        this.searchUsers(); // Llama a la función de búsqueda después de limpiar los filtros
+      }
+
+  hovering = false; // Variable para controlar el hover
+  currentSection = 'search-users'; // lo actualizas al navegar
+
+
+  searchUsers(): void {
+    const noFilters =
+      !this.firstNameSearch &&
+      !this.lastNameSearch &&
+      !this.emailSearch &&
+      !this.accountStatusSearch;
+  
+    if (noFilters) {
+      // Traer todos los perfiles si no hay filtros
+      this.profileService.getAllProfiles().subscribe((profiles: Profile[]) => {
+        this.foundProfiles = profiles;
+      });
+      return;
+    }
+  
+    // Caso con filtros aplicados
     this.profileService.getProfilesBySearch(
       this.firstNameSearch,
       this.lastNameSearch,
       this.emailSearch,
       this.accountStatusSearch,
-      this.allergyNameSearch
     ).subscribe((ids: string[]) => {
       this.userIds = ids;
       this.foundProfiles = [];
@@ -65,6 +86,7 @@ export class SearchUsersComponent {
       });
     });
   }
+  
 
   loadIngredients() {
     this.RecipeService.getAllIngredients().subscribe({
@@ -76,6 +98,7 @@ export class SearchUsersComponent {
       }
     });
   }
+
 
 
   toggleSearch() {
@@ -109,4 +132,26 @@ export class SearchUsersComponent {
   goToComments() {
     this.router.navigate(['/comments']);  // Redirige a los comentarios
   }
+
+
+  // Paginación
+currentPage: number = 1;
+itemsPerPage: number = 7;
+
+get paginatedProfiles(): Profile[] {
+  const start = (this.currentPage - 1) * this.itemsPerPage;
+  const end = start + this.itemsPerPage;
+  return this.foundProfiles.slice(start, end);
+}
+
+get totalPages(): number {
+  return Math.ceil(this.foundProfiles.length / this.itemsPerPage);
+}
+
+changePage(page: number): void {
+  if (page >= 1 && page <= this.totalPages) {
+    this.currentPage = page;
+  }
+}
+
 }

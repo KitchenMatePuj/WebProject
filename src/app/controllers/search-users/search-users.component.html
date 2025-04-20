@@ -1,71 +1,105 @@
-<div class="dashboard-container">
-  <nav class="sidebar">
-    <div class="profile" (click)="goToProfile()">
-      <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
-      <span class="profile-name">Admin</span>
-    </div>
-
+<div class="search-users-layout">
+  <!-- Sidebar con clase dinámica 'expanded' controlada por Angular -->
+  <nav
+    class="sidebar"
+    [class.expanded]="hovering"
+    (mouseenter)="hovering = true"
+    (mouseleave)="hovering = false"
+  >
     <div class="menu-container">
-      <ul>
-        <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Dashboard</a></li>
-        <li><a (click)="goToSearchUsers()"><img class="sidebar-icon" src="assets/icons/users-icon.png">Usuarios</a></li>
-        <li><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Recetas</a></li>
-        <li><a (click)="goToComments()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Administración</a></li>
-        <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
-      </ul>
-    </div>
+      <div class="menu-top">
+        <!-- Logo de la aplicación -->
+        <img class="logo" src="assets/icons/logo-icon.png" alt="Logo de KitchenMate" />
 
-    <div class="version-info">
-      <p>KitchenMate</p>
-      <p>Versión 1.0.0.11</p>
+        <!-- Perfil -->
+        <div class="profile" (click)="goToProfile()">
+          <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile" />
+          <span class="profile-name">Admin</span>
+        </div>
+
+        <!-- Opciones de menú -->
+        <ul>
+          <li>
+            <a (click)="goToDashboard()">
+              <img class="sidebar-icon" src="assets/icons/dashboard-icon.png" />
+              <span class="menu-text">Dashboard</span>
+            </a>
+          </li>
+          <li [class.active]="currentSection === 'search-users'">
+            <a (click)="goToSearchUsers()">
+              <img class="sidebar-icon" src="assets/icons/users-icon.png" alt="Usuarios" />
+              <span class="menu-text">Usuarios</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="goToRecipes()">
+              <img class="sidebar-icon" src="assets/icons/recipes-icon.png" alt="Recetas" />
+              <span class="menu-text">Recetas</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="goToComments()">
+              <img class="sidebar-icon" src="assets/icons/administration-icon.png" alt="Administración" />
+              <span class="menu-text">Administración</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="logout()">
+              <img class="sidebar-icon" src="assets/icons/help-icon.png" alt="Cerrar Sesión" />
+              <span class="menu-text">Cerrar Sesión</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Versión -->
+      <div class="version-info">
+        <p>KitchenMate</p>
+        <p>Versión 1.0.0.11</p>
+      </div>
     </div>
   </nav>
 
-  <main class="content">
-    <!-- Aquí empieza la sección específica de la búsqueda de usuarios -->
-    <div class="search-users-container">
-      <!-- Caja de búsqueda estilo card, igual que recetas -->
-      <div class="search-box">
-        <h3>Búsqueda de usuarios</h3>
-        <form #searchForm="ngForm" (ngSubmit)="searchUsers()">
-          <div class="input-group">
-            <label for="firstName">Nombre</label>
-            <input id="firstName" name="firstName" type="text" placeholder="Andrew" [(ngModel)]="firstNameSearch">
-          </div>
-          <div class="input-group">
-            <label for="lastName">Apellido</label>
-            <input id="lastName" name="lastName" type="text" placeholder="Salgado" [(ngModel)]="lastNameSearch">
-          </div>
-          <div class="input-group">
-            <label for="email">Correo electrónico</label>
-            <input id="email" name="email" type="email" placeholder="ejemplo@mail.com" [(ngModel)]="emailSearch">
-          </div>
-          <div class="input-group">
-            <label for="accountStatus">Estado de la Cuenta</label>
-            <select id="accountStatus" name="accountStatus" [(ngModel)]="accountStatusSearch">
-              <option value="active">active</option>
-              <option value="inactive">inactive</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label for="allergyName">Alergias</label>
-            <select id="allergyName" name="allergyName" [(ngModel)]="allergyNameSearch">
-              <option *ngFor="let ingredient of ingredients" [value]="ingredient.name">
-                {{ ingredient.name }}
-              </option>
-            </select>
-          </div>
-          <div class="search-buttons">
-            <button class="clear-button" type="button" (click)="clearFilters()">Limpiar</button>
-            <button class="search-button" type="submit">Buscar</button>
-          </div>
-        </form>
-      </div>
+  <!-- Contenido principal -->
+  <main class="search-users-content">
+    <div class="results-container">
+      <!-- Filtros -->
+      <section class="filters-bar">
+        <select [(ngModel)]="accountStatusSearch" (change)="searchUsers()">
+          <option *ngIf="!accountStatusSearch" value="" disabled selected hidden>Estado</option>
+          <option value="active">Activo</option>
+          <option value="inactive">Inactivo</option>
+        </select>
 
-      <!-- Tabla de usuarios -->
-      <div class="results-container" *ngIf="foundProfiles && foundProfiles.length > 0">
-        <h2>Resultados de búsqueda</h2>
-        <h3>Encontrados: {{ foundProfiles.length }}</h3>
+        <input
+          type="text"
+          placeholder="Nombre"
+          [(ngModel)]="firstNameSearch"
+          (input)="searchUsers()"
+        />
+        <input
+          type="text"
+          placeholder="Apellido"
+          [(ngModel)]="lastNameSearch"
+          (input)="searchUsers()"
+        />
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          [(ngModel)]="emailSearch"
+          (input)="searchUsers()"
+        />
+
+        <button class="btn-clear" type="button" (click)="clearFilters()">Borrar</button>
+      </section>
+
+      <!-- Línea separadora -->
+      <div class="results-separator"></div>
+
+      <!-- Tabla -->
+      <section class="search-results">
+        <h2>Usuarios registrados</h2>
+        <h3>Total: {{ foundProfiles.length }}</h3>
 
         <table>
           <thead>
@@ -73,17 +107,33 @@
               <th>ID</th>
               <th>Nombre Completo</th>
               <th>Email</th>
+              <th>Estado</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let profile of foundProfiles">
+            <tr *ngFor="let profile of paginatedProfiles">
               <td>{{ profile.keycloak_user_id }}</td>
               <td>{{ profile.first_name }} {{ profile.last_name }}</td>
               <td>{{ profile.email }}</td>
+              <td>{{ profile.account_status}}</td>
             </tr>
-          </tbody>
+          </tbody>          
         </table>
-      </div>
+        <div class="pagination">
+          <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">⟵ Anterior</button>
+        
+          <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+            <button
+              (click)="changePage(i + 1)"
+              [class.active]="currentPage === i + 1"
+            >
+              {{ i + 1 }}
+            </button>
+          </ng-container>
+        
+          <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente ⟶</button>
+        </div>        
+      </section>
     </div>
   </main>
 </div>
