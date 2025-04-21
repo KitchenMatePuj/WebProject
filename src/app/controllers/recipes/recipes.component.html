@@ -1,67 +1,133 @@
 <div class="recipes-container">
-  <nav class="sidebar">
+<!-- Sidebar con clase dinámica 'expanded' controlada por Angular -->
+<nav
+class="sidebar"
+[class.expanded]="hovering"
+(mouseenter)="hovering = true"
+(mouseleave)="hovering = false"
+>
+<div class="menu-container">
+  <div class="menu-top">
+    <!-- Logo de la aplicación -->
+    <img
+      class="logo"
+      src="assets/icons/logo-icon.png"
+      alt="Logo de KitchenMate">
+    <!-- Perfil -->
     <div class="profile" (click)="goToProfile()">
-      <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
+      <img
+        class="profile-pic"
+        src="assets/icons/admin-profile.svg"
+        alt="Admin Profile"
+      />
       <span class="profile-name">Admin</span>
     </div>
 
-    <div class="menu-container">
-      <ul>
-        <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png">Dashboard</a></li>
-        <li><a (click)="goToSearchUsers()"><img class="sidebar-icon" src="assets/icons/users-icon.png">Usuarios</a></li>
-        <li><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png">Recetas</a></li>
-        <li><a (click)="goToComments()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Administración</a></li>
-        <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
-      </ul>
-    </div>
+    <!-- Opciones de menú -->
+    <ul>
+      <li>
+        <a (click)="goToDashboard()">
+          <img class="sidebar-icon" src="assets/icons/dashboard-icon.png" />
+          <span class="menu-text">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a (click)="goToSearchUsers()">
+          <img
+            class="sidebar-icon"
+            src="assets/icons/users-icon.png"
+            alt="Usuarios"
+          />
+          <span class="menu-text">Usuarios</span>
+        </a>
+      </li>
+      <li [class.active]="currentSection === 'recipes'">
+        <a (click)="goToRecipes()">
+          <img
+            class="sidebar-icon"
+            src="assets/icons/recipes-icon.png"
+            alt="Recetas"
+          />
+          <span class="menu-text">Recetas</span>
+        </a>
+      </li>
+      <li>
+        <a (click)="goToComments()">
+          <img
+            class="sidebar-icon"
+            src="assets/icons/administration-icon.png"
+            alt="Administración"
+          />
+          <span class="menu-text">Administración</span>
+        </a>
+      </li>
+      <li>
+        <a (click)="logout()">
+          <img
+            class="sidebar-icon"
+            src="assets/icons/help-icon.png"
+            alt="Cerrar Sesión"
+          />
+          <span class="menu-text">Cerrar Sesión</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 
-    <div class="version-info">
-      <p>KitchenMate</p> 
-      <p>Versión 1.0.0.11</p>
-    </div>
-  </nav>
+  <!-- Versión -->
+  <div class="version-info">
+    <p>KitchenMate</p>
+    <p>Versión 1.0.0.11</p>
+  </div>
+</div>
+</nav>
 
+
+  <!-- Contenido principal -->
   <main class="content">
+    <div class="results-container">
 
-    <!-- Aquí empieza la sección específica de la búsqueda de recetas -->
-    <div class="search-users-container">
-      <div class="recipe-search-container">
-        <div class="search-box">
-          <h3>Búsqueda de recetas</h3>
-          <form (ngSubmit)="onSearch()">
-            <div class="input-group">
-              <label for="title">Título:</label>
-              <input type="text" id="title" [(ngModel)]="titleFilter" name="title" placeholder="Buscar receta">
-            </div>
-            <div class="input-group">
-              <label for="cookingTime">Tiempo de Cocción:</label>
-              <input type="number" id="cookingTime" [(ngModel)]="cookingTimeFilter" name="cookingTime" placeholder="Ej: 30">
-            </div>
-            <div class="input-group">
-              <label for="ingredient">Ingrediente:</label>
-              <input type="text" id="ingredient" [(ngModel)]="ingredientFilter" name="ingredient" placeholder="Ej: Pollo">
-            </div>
-            <button type="submit" (click)="onSearch()">Buscar</button>
-            <button type="button" (click)="clearFilters()">Limpiar</button>
-          </form>
-        </div>
+      <!-- 🔍 Barra de filtros -->
+      <div class="filters-bar">
+        <input
+          type="text"
+          [(ngModel)]="filters.title"
+          placeholder="Filtrar por título..."
+          (input)="applyFilters()"
+        />
+        <input
+          type="number"
+          [(ngModel)]="filters.cookingTime"
+          placeholder="Filtrar por tiempo..."
+          (input)="applyFilters()"
+        />
+        <input
+          type="text"
+          [(ngModel)]="filters.ingredient"
+          placeholder="Filtrar por ingrediente..."
+          (input)="applyFilters()"
+        />
+        <button class="btn-clear" (click)="clearFilters()">Limpiar filtros</button>
       </div>
 
-      <div class="search-results-container" *ngIf="searchResults && searchResults.length > 0">
-        <h2>Resultados de búsqueda</h2>
+      <div class="results-separator"></div>
+
+
+      <!-- 📊 Resultados -->
+      <div class="search-results">
         <table>
           <thead>
             <tr>
-              <th>Receta ID</th>
+              <th>ID</th>
               <th>Título</th>
-              <th>Tiempo de Cocción</th>
+              <th>Tiempo</th>
               <th>Tipo</th>
               <th>Porciones</th>
-              <th>Rating Promedio</th>
+              <th>Rating</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let recipe of searchResults">
+            <tr *ngFor="let recipe of paginatedResults">
               <td>{{ recipe.recipe_id }}</td>
               <td>{{ recipe.title }}</td>
               <td>{{ recipe.cooking_time }} min</td>
@@ -71,8 +137,22 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- 📄 Paginación -->
+        <div class="pagination" *ngIf="filteredResults.length > pageSize">
+          <button (click)="prevPage()" [disabled]="currentPage === 1">← Anterior</button>
+        
+          <button
+            *ngFor="let page of pages"
+            (click)="goToPage(page)"
+            [class.active]="currentPage === page"
+          >
+            {{ page }}
+          </button>
+        
+          <button (click)="nextPage()" [disabled]="currentPage === pages.length">Siguiente →</button>
+        </div>        
       </div>
     </div>
-
   </main>
 </div>

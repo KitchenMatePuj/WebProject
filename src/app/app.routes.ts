@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
 import { LoginViewComponent } from './controllers/auth/login-view/login-view.component';
-import { FirmaViewComponent } from './controllers/firma/firma-view/firma-view.component';
-import { ActuacionViewComponent } from './controllers/actuacion/actuacion-view/actuacion-view.component';
-import { ProcessViewComponent } from './controllers/process/process-view/process-view.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DashboardComponent } from './controllers/dashboard/dashboard.component';
 import { ProfileComponent } from './controllers/profile/profile.component';  // Asegúrate de crear este componente
@@ -27,9 +24,6 @@ import { TrendAnalysisComponent } from './controllers/trend-analysis/trend-analy
 
 export const routes: Routes = [
     { path: 'login', component: LoginViewComponent },
-    { path: 'firma', component: FirmaViewComponent, canActivate: [AuthGuard] },
-    { path: 'actuacion', component: ActuacionViewComponent, canActivate: [AuthGuard] },
-    { path: 'process', component: ProcessViewComponent, canActivate: [AuthGuard] },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }, 
     { path: 'profile', component: ProfileComponent }, 
     { path: 'search-users', component: SearchUsersComponent, canActivate: [AuthGuard] },

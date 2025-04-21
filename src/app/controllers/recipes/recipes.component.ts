@@ -1,79 +1,141 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; // CommonModule
+import { CommonModule } from '@angular/common';
 import { Recipe, RecipeService } from '../../services/recipe.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-recipes',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.scss',
 })
 export class RecipesComponent implements OnInit {
 
+  // Estado del menú lateral
+  hovering = false;
+  currentSection = 'recipes';
 
-
-// Variables para filtros
-    titleFilter: string = '';
-    cookingTimeFilter?: number;
-    ingredientFilter: string = '';
-  
-    // Variable para almacenar los resultados
-    searchResults: Recipe[] = [];
+  // Control de búsqueda
   isSearchActive: boolean = true;
 
-  constructor(private router: Router, private recipeService: RecipeService) {}
+  // Filtros
+  filters = {
+    title: '',
+    cookingTime: '',
+    ingredient: ''
+  };
+
+  // Datos
+  originalResults: Recipe[] = [];
+  filteredResults: Recipe[] = [];
+  paginatedResults: Recipe[] = [];
+
+  // Paginación
+  currentPage: number = 1;
+  pageSize: number = 9;
+  pages: number[] = [];
+
+  constructor(
+    private router: Router,
+    private recipeService: RecipeService
+  ) {}
 
   ngOnInit(): void {
-  }
-
-    // Método opcional para limpiar los filtros y resultados
-    clearFilters(): void {
-      this.titleFilter = '';
-      this.cookingTimeFilter = undefined;
-      this.ingredientFilter = '';
-      this.searchResults = [];
-    }
-
-
-  // Método que se ejecuta al presionar el botón "Buscar"
-  onSearch(): void {
-    // Llama al servicio y pasa los filtros
-    this.recipeService.searchRecipes(
-      this.titleFilter,
-      this.cookingTimeFilter,
-      this.ingredientFilter
-    ).subscribe({
+    this.recipeService.getAllRecipes().subscribe({
       next: (data: Recipe[]) => {
-        // Actualiza los resultados y, al tener datos, el contenedor se mostrará
-        this.searchResults = data;
-        console.log('Resultados de búsqueda:', data);
+        this.originalResults = data;
+        this.filteredResults = [...data];
+        this.updatePagination();
       },
       error: (err: any) => {
-        console.error('Error en la búsqueda:', err);
+        console.error('Error al obtener recetas:', err);
       }
     });
   }
 
-  toggleSearch() {
+  applyFilters(): void {
+    this.recipeService.searchRecipes(
+      this.filters.title,
+      this.filters.cookingTime ? +this.filters.cookingTime : undefined,
+      this.filters.ingredient
+    ).subscribe({
+      next: (data: Recipe[]) => {
+        this.filteredResults = data;
+        this.currentPage = 1;
+        this.updatePagination();
+      },
+      error: (err) => {
+        console.error('Error al aplicar filtros:', err);
+      }
+    });
+  }
+  
+  
+
+  clearFilters(): void {
+    this.filters = { title: '', cookingTime: '', ingredient: '' };
+    this.recipeService.getAllRecipes().subscribe({
+      next: (data: Recipe[]) => {
+        this.filteredResults = data;
+        this.currentPage = 1;
+        this.updatePagination();
+      },
+      error: (err) => {
+        console.error('Error al limpiar filtros:', err);
+      }
+    });
+  }
+  
+
+  updatePagination(): void {
+    const total = this.filteredResults.length;
+    const start = (this.currentPage - 1) * this.pageSize;
+    const end = start + this.pageSize;
+    this.paginatedResults = this.filteredResults.slice(start, end);
+    this.pages = Array.from({ length: Math.ceil(total / this.pageSize) }, (_, i) => i + 1);
+  }
+
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.updatePagination();
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updatePagination();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.pages.length) {
+      this.currentPage++;
+      this.updatePagination();
+    }
+  }
+
+  toggleSearch(): void {
     this.isSearchActive = !this.isSearchActive;
   }
 
+  // Navegación
   logout() {
     localStorage.removeItem('isAuthenticated');
     this.router.navigate(['/login']);
   }
-    goToSearchUsers() {
-    this.router.navigate(['/search-users']);  // Redirige a la lista de todos los usuarios
+
+  goToSearchUsers() {
+    this.router.navigate(['/search-users']);
   }
 
   goToProfile() {
-    this.router.navigate(['/profile']);  // Redirige al perfil del admin
+    this.router.navigate(['/profile']);
   }
 
   goToDashboard() {
-    this.router.navigate(['/dashboard']);  // Redirige al dashboard
+    this.router.navigate(['/dashboard']);
   }
 
   goToRecipes() {

@@ -15,6 +15,7 @@ export interface Recipe {
   total_portions: number;
   keycloak_user_id: string;
   rating_avg: number;
+  ingredients?: string[];
 }
 
 export interface TotalRecipeCount {
@@ -74,5 +75,14 @@ export class RecipeService {
       return this.http.get<Ingredient[]>(`${this.baseUrl}/ingredients/`);
     }
 
+    getAllRecipes(): Observable<Recipe[]> {
+      return this.http.get<Recipe[]>(`${this.baseUrl}/recipes/`);
+    }
+
+    getRecipeById(id: number) {
+      return this.http.get<Recipe>(`${this.baseUrl}/recipes/${id}`);
+    }
+    
+    
 
 }
