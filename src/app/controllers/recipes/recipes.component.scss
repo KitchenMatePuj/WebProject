@@ -25,91 +25,90 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+      }
 
-        .logo {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 20px;
+      .profile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        cursor: pointer;
 
-          img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-          }
+        .profile-pic {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          margin-right: 0;
+          transition: margin 0.3s ease;
         }
 
-        .profile {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 20px;
-          cursor: pointer;
+        .profile-name {
+          margin-left: 10px;
+          font-size: 18px;
+          font-weight: bold;
+          color: black;
+          display: none;
+          white-space: nowrap;
+        }
+      }
 
-          .profile-pic {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 0;
-            transition: margin 0.3s ease;
-          }
+      .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
 
-          .profile-name {
-            margin-left: 10px;
-            font-size: 18px;
-            font-weight: bold;
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          a {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            text-decoration: none;
             color: black;
-            display: none;
             white-space: nowrap;
-          }
-        }
+            overflow: hidden; // evita mostrar texto recortado
 
-        ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-
-          li {
-            a {
-              display: flex;
-              align-items: center;
-              padding: 10px 20px;
-              text-decoration: none;
-              color: black;
-              white-space: nowrap;
-              overflow: hidden;
-
-              .sidebar-icon {
-                width: 20px;
-                height: 20px;
-                flex-shrink: 0;
-                margin-right: 10px;
-              }
-
-              .menu-text {
-                display: none;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                color: black;
-              }
-
-              &:hover {
-                background-color: #223926;
-                transition: background-color 0.3s ease;
-
-                .menu-text {
-                  color: #f7efe6;
-                }
-              }
+            .sidebar-icon {
+              width: 20px;
+              height: 20px;
+              flex-shrink: 0;
+              margin-right: 10px;
             }
 
-            &.active a {
-              background-color: #042b0b;
+            .menu-text {
+              display: none;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              color: black;
+            }
+          }
+          a:hover{
+            background-color: #223926;
+            transition: background-color 0.3s ease;
 
-              .menu-text {
-                color: #f7efe6;
-              }
+            .menu-text {
+              color: #f7efe6;
+            }
+          }
+
+          &.active a {
+            background-color: #042b0b;
+
+            .menu-text {
+              color: #f7efe6;
             }
           }
         }
@@ -135,10 +134,10 @@
           }
 
           .profile-name {
-            display: inline !important;
-            color: black !important;
+            display: inline;
           }
         }
+
 
         ul {
           li {
@@ -146,15 +145,14 @@
               overflow: visible;
 
               .menu-text {
-                display: inline !important;
-                color: black !important;
+                display: inline;
               }
             }
           }
         }
 
         .version-info {
-          display: block !important;
+          display: block;
         }
       }
     }

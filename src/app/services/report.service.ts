@@ -17,7 +17,7 @@ export interface Report {
   providedIn: 'root'
 })
 export class ReportService {
-  public baseUrl = 'http://localhost:8001/reports';
+  public baseUrl = 'http://localhost:8002/reports';
 
   constructor(private http: HttpClient) {}
 
