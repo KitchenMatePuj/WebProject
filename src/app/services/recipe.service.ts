@@ -79,7 +79,10 @@ export class RecipeService {
       return this.http.get<Recipe[]>(`${this.baseUrl}/recipes/`);
     }
 
-
+    getRecipeById(id: number) {
+      return this.http.get<Recipe>(`${this.baseUrl}/recipes/${id}`);
+    }
+    
     
 
 }

@@ -3,6 +3,12 @@
   height: 100vh;
   background-color: #f7efe6;
 
+  &.expanded {
+    .content {
+      margin-left: 250px;
+    }
+  }
+
   .sidebar {
     width: 60px;
     height: 100vh;
@@ -79,7 +85,7 @@
             text-decoration: none;
             color: black;
             white-space: nowrap;
-            overflow: hidden; // evita mostrar texto recortado
+            overflow: hidden;
 
             .sidebar-icon {
               width: 20px;
@@ -96,7 +102,8 @@
               color: black;
             }
           }
-          a:hover{
+
+          a:hover {
             background-color: #223926;
             transition: background-color 0.3s ease;
 
@@ -139,17 +146,8 @@
           }
         }
 
-
-        ul {
-          li {
-            a {
-              overflow: visible;
-
-              .menu-text {
-                display: inline;
-              }
-            }
-          }
+        ul li a .menu-text {
+          display: inline;
         }
 
         .version-info {
@@ -161,31 +159,55 @@
 
   .content {
     flex: 1;
+    margin-left: 60px;
+    transition: margin-left 0.3s ease;
     padding: 20px;
-    padding-left: 100px;
 
     .dashboard-cards {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-
+      grid-template-columns: repeat(2, minmax(400px, 1fr)); // 🔹 2 columnas de mínimo 400px
+      gap: 24px;
+      justify-content: center;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    
       .card {
         background: #fcf9f5;
         padding: 20px;
         border-radius: 10px;
-
-
+        width: 100%;
+        max-width: 520px; // ⬅️ incrementa el ancho de cada tarjeta
+        min-width: 460px; // 🔸 para evitar que se vuelvan delgadas
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    
         h3 {
           margin-bottom: 15px;
-        }
-
-        .card-content {
-          background-color: #fcf9f5;
-          padding: 20px;
-          border-radius: 5px;
+          font-size: 18px;
           text-align: center;
         }
+    
+        .card-content {
+          padding: 10px;
+          text-align: center;
+    
+          canvas {
+            max-width: 100% !important;
+            max-height: 280px !important;
+          }
+    
+          .big-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #5c715e;
+          }
+    
+          .donut-wrapper {
+            max-width: 340px;
+            margin: 0 auto;
+          }
+        }
       }
-    }
+    }       
   }
 }
