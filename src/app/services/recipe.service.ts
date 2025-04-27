@@ -18,6 +18,15 @@ export interface Recipe {
   ingredients?: string[];
 }
 
+export interface Comment {
+  comment_id: number;
+  user_name: string;
+  comment_text: string;
+  rating: number;
+  created_at: string;
+}
+
+
 export interface TotalRecipeCount {
   total_recipes: number;
 }
@@ -26,6 +35,7 @@ export interface Ingredient {
   name: string;
   measurement_unit: string;
   ingredient_id: number;
+  recipe_id: number;
 }
 
 
@@ -82,6 +92,22 @@ export class RecipeService {
     getRecipeById(id: number) {
       return this.http.get<Recipe>(`${this.baseUrl}/recipes/${id}`);
     }
+    
+    getCommentsByRecipeId(recipeId: number): Observable<Comment[]> {
+      return this.http.get<Comment[]>(`${this.baseUrl}/recipes/${recipeId}/comments`);
+    }
+    
+    getRecipeSteps(recipeId: number): Observable<any[]> {
+      return this.http.get<any[]>(`${this.baseUrl}/recipes/${recipeId}/steps`);
+    }
+
+    getIngredientsByRecipeId(recipeId: number) {
+      return this.http.get<any[]>(`${this.baseUrl}/recipes/${recipeId}/ingredients`);
+    }
+    
+    
+    
+    
     
     
 

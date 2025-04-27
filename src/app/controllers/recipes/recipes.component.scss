@@ -215,6 +215,17 @@
       .search-results {
         margin-top: 20px;
 
+        .ver-detalles {
+          color: #042b0b; /* verde normal */
+          font-weight: bold;
+          cursor: pointer;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        
+
         table {
           width: 100%;
           border-collapse: collapse;

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReportService, Report } from '../../services/report.service';
 
+
 @Component({
   selector: 'app-comments',
   standalone: true,
@@ -53,6 +54,11 @@ export class CommentsComponent implements OnInit {
       }
     });
   }
+
+  verDetalles(comentario: any) {
+    this.router.navigate(['/details', comentario.id]);
+  }
+  
 
   applyFilters(): void {
     this.reportService.searchReports(

@@ -36,7 +36,7 @@ export const routes: Routes = [
     { path: 'total-reports', component: TotalReportsComponent, canActivate: [AuthGuard]},
     { path: 'details', component: DetailsComponent, canActivate: [AuthGuard]},
     { path: 'trend-analysis', component: TrendAnalysisComponent, canActivate: [AuthGuard]},
-
+    { path: 'personalized-reports', component: TrendAnalysisComponent, canActivate: [AuthGuard]},
     { path: '', redirectTo: '/login', pathMatch: 'full' }
   ];
 
