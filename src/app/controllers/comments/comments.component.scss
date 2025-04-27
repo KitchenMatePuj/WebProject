@@ -213,6 +213,18 @@
       .table-wrapper {
         overflow-x: auto;
 
+        .ver-detalles {
+          color: #007bff; /* Un azul bonito */
+          cursor: pointer;
+          text-decoration: none;
+          transition: text-decoration 0.3s ease;
+        
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        
+
         .comments-table {
           width: 100%;
           border-collapse: collapse;

@@ -52,16 +52,6 @@ class="sidebar"
         </a>
       </li>
       <li>
-        <a (click)="goToComments()">
-          <img
-            class="sidebar-icon"
-            src="assets/icons/administration-icon.png"
-            alt="Administración"
-          />
-          <span class="menu-text">Administración</span>
-        </a>
-      </li>
-      <li>
         <a (click)="logout()">
           <img
             class="sidebar-icon"
@@ -124,6 +114,7 @@ class="sidebar"
               <th>Tipo</th>
               <th>Porciones</th>
               <th>Rating</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -133,7 +124,12 @@ class="sidebar"
               <td>{{ recipe.cooking_time }} min</td>
               <td>{{ recipe.food_type }}</td>
               <td>{{ recipe.total_portions }}</td>
-              <td>{{ recipe.rating_avg }}</td>
+              <td>{{ recipe.rating_avg }}</td>              
+              <td><b>
+                <span class="ver-detalles" (click)="verDetalles(recipe)">
+                  Ver detalles
+                </span>
+                </b></td>
             </tr>
           </tbody>
         </table>

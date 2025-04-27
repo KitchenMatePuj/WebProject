@@ -1,85 +1,116 @@
-<div class="total_reports-container">
-  <nav class="sidebar">
-    <div class="profile" (click)="goToProfile()">
-      <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
-      <span class="profile-name">Moderator</span>
-    </div>
-
+<div class="total-reports-layout">
+  <!-- Sidebar expandible -->
+  <nav class="sidebar" [class.expanded]="hovering" (mouseenter)="hovering = true" (mouseleave)="hovering = false">
     <div class="menu-container">
-      <ul>
-        <li><a (click)="goToReports()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Reportes</a></li>
-        <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
-      </ul>
-    </div>
+      <div class="menu-top">
+        <!-- Logo -->
+        <img class="logo" src="assets/icons/logo-icon.png" alt="Logo de KitchenMate">
 
-    <div class="version-info">
-      <p>KitchenMate</p>
-      <p>Versión 1.0.0.11</p>
+        <!-- Perfil -->
+        <div class="profile" (click)="goToProfile()">
+          <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Moderator Profile" />
+          <span class="profile-name">Moderator</span>
+        </div>
+
+        <!-- Menú -->
+        <ul>
+          <li [class.active]="currentSection === 'reports'">
+            <a (click)="goToReports()">
+              <img class="sidebar-icon" src="assets/icons/administration-icon.png" />
+              <span class="menu-text">Reportes</span>
+            </a>
+          </li>          
+          <li>
+            <a (click)="logout()">
+              <img class="sidebar-icon" src="assets/icons/help-icon.png" />
+              <span class="menu-text">Cerrar Sesión</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Versión -->
+      <div class="version-info">
+        <p>KitchenMate</p>
+        <p>Versión 1.0.0.11</p>
+      </div>
     </div>
   </nav>
 
+  <!-- Contenido principal -->
   <main class="content">
-    <div class="search-reports-container">
-      <div class="search-box">
-        <h3>Búsqueda de reportes</h3>
-        <form #searchForm="ngForm" (ngSubmit)="onSearch()">
-          <div class="input-group">
-            <label for="reportType">Tipo de Reporte</label>
-            <select id="reportType" name="reportType" [(ngModel)]="reportTypeSearch">
-              <option value="receta">Receta</option>
-              <option value="comentario">Comentario</option>
-              <option value="otro">Otro</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label for="status">Estado</label>
-            <select id="status" name="status" [(ngModel)]="statusSearch">
-              <option value="pendiente">Pendiente</option>
-              <option value="eliminado">Eliminado</option>
-              <option value="resuelto">Resuelto</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label for="reportDate">Fecha de Reporte</label>
-            <input id="reportDate" name="reportDate" type="date" [(ngModel)]="reportDateSearch">
-          </div>
-          <div class="search-buttons">
-            <button class="clear-button" type="button" (click)="clearFilters()">Limpiar</button>
-<<<<<<< HEAD
-            <button type="search-button" (click)="onSearch()">Buscar</button>
-=======
-            <button class="search-button" type="submit">Buscar</button>
->>>>>>> b953cc92d3b0bac36eee3bc5bed3ad706de8dc33
-          </div>
-        </form>
-      </div>
-    </div>
+    <div class="results-container">
 
-    <div class="reports-table-container" *ngIf="foundReports && foundReports.length > 0">
-      <h2>Resultados de búsqueda</h2>
-      <h3>Encontrados: {{ foundReports.length }}</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Tipo</th>
-            <th>Usuario</th>
-            <th>Estado</th>
-            <th>Fecha</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let report of foundReports">
-            <td>{{ report.id }}</td>
-            <td>{{ report.type }}</td>
-            <td>{{ report.user }}</td>
-            <td>{{ report.status }}</td>
-            <td>{{ report.date }}</td>
-            <td><button (click)="goToDetails()">Ver detalles</button></td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- 🔍 Barra de filtros -->
+      <div class="filters-bar">
+        <select [(ngModel)]="reportTypeSearch" (change)="applyFilters()">
+          <option value="">Filtrar por tipo...</option>
+          <option value="receta">Receta</option>
+          <option value="comentario">Comentario</option>
+          <option value="otro">Otro</option>
+        </select>
+
+        <select [(ngModel)]="statusSearch" (change)="applyFilters()">
+          <option value="">Filtrar por estado...</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="eliminado">Eliminado</option>
+          <option value="resuelto">Resuelto</option>
+        </select>
+
+        <input
+          type="date"
+          [(ngModel)]="reportDateSearch"
+          (input)="applyFilters()"
+          placeholder="Filtrar por fecha..."
+        />
+
+        <button class="btn-clear" (click)="clearFilters()">Limpiar filtros</button>
+      </div>
+
+      <div class="results-separator"></div>
+
+      <!-- 📊 Tabla de reportes -->
+      <div class="search-results" *ngIf="foundReports.length > 0">
+        <h2>Resultados encontrados: {{ foundReports.length }}</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tipo</th>
+              <th>Usuario</th>
+              <th>Estado</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of paginatedReports">
+              <td>{{ report.report_id }}</td>
+              <td>{{ report.resource_type }}</td>
+              <td>{{ report.reporter_user_id }}</td>
+              <td>{{ report.status }}</td>
+              <td>{{ report.created_at | date: 'yyyy-MM-dd' }}</td>
+              <button class="btn-details" (click)="goToDetails(report.report_id)">Ver detalles</button>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 📄 Paginación -->
+        <div class="pagination" *ngIf="foundReports.length > itemsPerPage">
+          <button (click)="prevPage()" [disabled]="currentPage === 1">← Anterior</button>
+
+          <button
+            *ngFor="let page of totalPagesArray"
+            (click)="goToPage(page)"
+            [class.active]="currentPage === page"
+          >
+            {{ page }}
+          </button>
+
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente →</button>
+        </div>
+      </div>
     </div>
   </main>
 </div>

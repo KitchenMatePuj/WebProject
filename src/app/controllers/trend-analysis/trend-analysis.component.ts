@@ -25,13 +25,14 @@ goToPersonalizedReports() {
   this.router.navigate(['/personalized-reports']);
 }
 
+goToTrendAnalysis() {
+  this.router.navigate(['/trend-analysis']);
+}
+
   goToProfile() {
     this.router.navigate(['/profile']);  // Redirige al perfil del admin
   }
 
-  goToReports() {
-    this.router.navigate(['/total-reports']);  // Redirige al dashboard
-  }
 
   goToDetails() {
     this.router.navigate(['/details']);

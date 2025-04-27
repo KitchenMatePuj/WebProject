@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Recipe, RecipeService } from '../../services/recipe.service';
 import { FormsModule } from '@angular/forms';
+import { ReportService, Report } from '../../services/report.service';
 
 @Component({
   selector: 'app-recipes',
@@ -36,6 +37,7 @@ export class RecipesComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 9;
   pages: number[] = [];
+  comment: any;
 
   constructor(
     private router: Router,
@@ -54,6 +56,13 @@ export class RecipesComponent implements OnInit {
       }
     });
   }
+
+  verDetalles(recipe: any) {
+    console.log('Receta enviada:', recipe);
+    this.router.navigate(['/details'], { state: { recipe: recipe } });
+  }
+  
+
 
   applyFilters(): void {
     this.recipeService.searchRecipes(

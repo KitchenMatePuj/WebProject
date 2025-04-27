@@ -120,6 +120,7 @@ class="sidebar"
               <th>Comentario</th>
               <th>Estado</th>
               <th>Fecha</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -128,6 +129,10 @@ class="sidebar"
               <td>{{ comment.description }}</td>
               <td>{{ comment.status }}</td>
               <td>{{ comment.created_at | date: 'yyyy-MM-dd' }}</td>
+              <td><b>
+                <span class="ver-detalles" (click)="verDetalles(comment)">
+                </span>
+                </b></td>
             </tr>
           </tbody>
         </table>

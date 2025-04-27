@@ -1,94 +1,129 @@
-<div class="details-container">
-    <nav class="sidebar">
-      <div class="profile" (click)="goToProfile()">
-        <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile">
-        <span class="profile-name">Moderator</span>
-      </div>
-  
+<div class="recipe-details-container">
+    <!-- Sidebar con clase dinámica 'expanded' controlada por Angular -->
+    <nav class="sidebar" [class.expanded]="hovering" (mouseenter)="hovering = true" (mouseleave)="hovering = false">
       <div class="menu-container">
-        <ul>
-          <li><a (click)="goToReports()"><img class="sidebar-icon" src="assets/icons/administration-icon.png">Reportes</a></li>
-          <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png">Cerrar Sesión</a></li>
-        </ul>
-      </div>
+        <div class="menu-top">
+          <!-- Logo -->
+          <img class="logo" src="assets/icons/logo-icon.png" alt="Logo KitchenMate" />
+          <!-- Perfil -->
+          <div class="profile" (click)="goToProfile()">
+            <img class="profile-pic" src="assets/icons/admin-profile.svg" alt="Admin Profile" />
+            <span class="profile-name">Admin</span>
+          </div>
   
-      <div class="version-info">
-        <p>KitchenMate</p>
-        <p>Versión 1.0.0.11</p>
+          <!-- Opciones de menú -->
+          <ul>
+            <li><a (click)="goToDashboard()"><img class="sidebar-icon" src="assets/icons/dashboard-icon.png" alt="Dashboard" /><span class="menu-text">Dashboard</span></a></li>
+            <li><a (click)="goToSearchUsers()"><img class="sidebar-icon" src="assets/icons/users-icon.png" alt="Usuarios" /><span class="menu-text">Usuarios</span></a></li>
+            <li [class.active]="currentSection === 'recipe'"><a (click)="goToRecipes()"><img class="sidebar-icon" src="assets/icons/recipes-icon.png" alt="Recetas" /><span class="menu-text">Recetas</span></a></li>
+            <li><a (click)="logout()"><img class="sidebar-icon" src="assets/icons/help-icon.png" alt="Cerrar Sesión" /><span class="menu-text">Cerrar Sesión</span></a></li>
+          </ul>
+        </div>
+  
+        <!-- Versión -->
+        <div class="version-info">
+          <p>KitchenMate</p>
+          <p>Versión 1.0.0.11</p>
+        </div>
       </div>
     </nav>
   
-    <main class="content">
-      <div class="top-bar">
-        <input class="search-bar" type="text" placeholder="Búsqueda rápida">
-      </div>
+    <!-- Contenido principal -->
+    <main class="content" *ngIf="recipe">
+      <!-- 💡 Información general de la receta -->
+      <section class="general-info">
+        <div class="info-item">
+          <strong>Tiempo de cocción</strong>
+          <p>{{ recipe.cooking_time }} minutos</p>
+        </div>
+        <div class="info-item">
+          <strong>Porciones</strong>
+          <p>{{ recipe.total_portions }}</p>
+        </div>
+        <div class="info-item">
+          <strong>Tipo de comida</strong>
+          <p>{{ recipe.food_type }}</p>
+        </div>
+        <div class="info-item">
+          <strong>Rating</strong>
+          <p>{{ recipe.rating_avg }} ⭐</p>
+        </div>
+      </section>
   
-      <div class="details-content">
-        <div class="columns">
-          <div class="column">
-            <div class="filter-item">
-              <label for="name">Nombre</label>
-              <input type="text" id="name" value="Amparito" />
-            </div>
-            <div class="filter-item">
-              <label for="role">Rol</label>
-              <input type="text" id="role" value="Administrador" />
-            </div>
-            <div class="filter-item">
-              <label for="id-number">Número de Documento</label>
-              <input type="text" id="id-number" value="1094044024" />
-            </div>
-          </div>
-          <div class="column">
-            <div class="filter-item">
-              <label for="report-date">Fecha de Reporte</label>
-              <input type="text" id="report-date" value="01/01/2025" />
-            </div>
-            <div class="filter-item">
-              <label for="report-description">Descripción del Reporte</label>
-              <input type="text" id="report-description" value="El usuario @PepeGangita puso un comentario despectivo hacia nuestros compatriotas venezolanos..." />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="report-details">
-        <div class="status">
-          <h2>Detalles del Reporte (Comentario)</h2>
-          <p><strong>Estado Actual:</strong> Pendiente</p>
-        </div>
-        <div class="columns">
-          <div class="column">
-            <div class="filter-item">
-              <label for="comment-date">Fecha y Hora de Comentario / Receta</label>
-              <p id="comment-date">31/12/2024 (22:37)</p>
-            </div>
-            <div class="filter-item">
-              <label for="report-type">Tipo de Reporte</label>
-              <p id="report-type">Comentario / Receta / Otro</p>
-            </div>
-            <div class="filter-item">
-              <label for="reported-element">Elemento Reportado</label>
-              <p id="reported-element">Descripción del Comentario</p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="filter-item">
-              <label for="comment-recipe">Comentario / Receta en Cuestión</label>
-              <blockquote id="comment-recipe">"Pasta Italiana a la Venec..." / "Detesto estas Recetas Venecas..."</blockquote>
-              <a href="#" class="view-comment">Ver Comentario Reportado ></a>
-              <a href="#" class="view-user">Ver Usuario (Responsable) ></a>
-            </div>
-            <div class="filter-item">
-              <label for="additional-files">Archivos Adicionales Subidos</label>
-              <img src="assets/icons/upload.png" alt="Archivo Adicional Subido" id="additional-files" />
-              (jpg, mp4, gif)
-            </div>
-          </div>
-        </div>
+      <!-- 💡 Título de la receta -->
+      <h1 class="recipe-title">{{ recipe.title }}</h1>
   
-        <!-- Buttons -->
-        <button type="button" class="delete-report">Eliminar Reporte</button>
-        <button type="button" class="delete-comment-recipe">Eliminar Comentario / Receta</button>
-      </div>
+      <!-- 💡 Nombre del usuario -->
+      <p class="author-name">Subido por: <strong>{{ recipe.author_name || 'Anónimo' }}</strong></p>
+  
+      <div class="results-separator"></div>
+  
+      <!-- 💡 Ingredientes -->
+      <section class="ingredients-section">
+        <h2>Ingredientes</h2>
+      
+        <ul *ngIf="ingredients.length > 0; else noIngredients">
+          <li *ngFor="let ingredient of ingredients">
+            {{ ingredient.name }} ({{ ingredient.measurement_unit }})
+          </li>
+        </ul>
+      
+        <ng-template #noIngredients>
+          <p>No se especificaron ingredientes para esta receta.</p>
+        </ng-template>
+      </section>
+      
+  
+      <div class="results-separator"></div>
+  
+      <!-- 💡 Pasos -->
+      <section class="steps-section">
+        <h2>Preparación paso a paso</h2>
+        <ol *ngIf="steps.length > 0; else noSteps">
+          <li *ngFor="let step of steps">
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+          </li>
+        </ol>
+        <ng-template #noSteps>
+          <p>No se especificaron pasos para esta receta.</p>
+        </ng-template>
+      </section>
+      <div class="results-separator"></div>
+
+<!-- 💬 Comentarios -->
+<section class="comments-section">
+  <h2>Comentarios</h2>
+
+  <div *ngIf="comments.length > 0; else noComments">
+    <table class="comments-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Comentario</th>
+          <th>Rating</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let comment of comments">
+          <td>{{ comment.comment_id }}</td>
+          <td>{{ comment.author_user_id }}</td>
+          <td>{{ comment.text }}</td>
+          <td>{{ comment.rating }} ⭐</td>
+          <td>{{ comment.created_at | date: 'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noComments>
+    <p class="no-comments">No hay comentarios aún para esta receta.</p>
+  </ng-template>
+</section>
+
+
     </main>
   </div>
+  
