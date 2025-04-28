@@ -8,7 +8,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const token = this.authService.getToken();
-    
     if (token) {
       const cloned = req.clone({
         setHeaders: {
@@ -17,7 +16,6 @@ export class AuthInterceptor implements HttpInterceptor {
       });
       return next.handle(cloned);
     }
-    
     return next.handle(req);
   }
 }
