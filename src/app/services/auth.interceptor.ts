@@ -8,6 +8,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const token = this.authService.getToken();
+    
+    console.log('AuthInterceptor - Token actual:', token);
+
     if (token) {
       const cloned = req.clone({
         setHeaders: {
