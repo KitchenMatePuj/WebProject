@@ -8,12 +8,14 @@ import { AuthService } from './services/auth.service';
 
 
 export const authInterceptorFn: HttpInterceptorFn = (
-    req: HttpRequest<any>,
-    next: HttpHandlerFn
-  ): Observable<HttpEvent<any>> => {
+  req: HttpRequest<any>,
+  next: HttpHandlerFn
+): Observable<HttpEvent<any>> => {
 
   const authService = inject(AuthService);
   const token = authService.getToken();
+
+  console.log('Interceptor Funcional - Token actual:', token);
 
   if (token) {
     const cloned = req.clone({
