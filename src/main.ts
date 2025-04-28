@@ -5,15 +5,18 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { AuthInterceptor } from './app/services/auth.interceptor';
+import { provideHttpClient, withInterceptors } from '@angular/common/http'; // <<< Usa withInterceptors
+import { authInterceptorFn } from './app/services/auth.interceptor'; // <<< Importa tu interceptor funcional
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     importProvidersFrom(FormsModule),
     provideAnimationsAsync(),
-    provideHttpClient(), 
-    AuthInterceptor 
+    provideHttpClient(
+      withInterceptors([
+        authInterceptorFn
+      ])
+    )
   ]
 }).catch(err => console.error(err));
