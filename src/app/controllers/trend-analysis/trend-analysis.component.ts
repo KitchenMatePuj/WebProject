@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Si necesitas redirigir al usuario
-import { CommonModule } from '@angular/common'; // CommonModule
+import { Router } from '@angular/router'; 
+import { CommonModule } from '@angular/common'; 
 import { tick } from '@angular/core/testing';
 @Component({
   selector: 'app-trend-analysis',
@@ -14,10 +14,9 @@ export class TrendAnalysisComponent {
 
 
   logout() {
-    // Aquí puedes agregar la lógica de cierre de sesión
+    
     console.log('Logging out...');
     
-    // Si necesitas redirigir al usuario a la página de inicio de sesión después del logout:
     this.router.navigate(['/login']);
   }
 
