@@ -152,7 +152,7 @@ export class TotalReportsComponent {
   
     return filtered;
   }
-  currentSection: string = 'reports'; // 🔥 Para indicar que estamos en "Reportes"
+  currentSection: string = 'reports'; /
   
 
   goToDetails(id: number) {
