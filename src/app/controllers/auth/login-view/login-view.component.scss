@@ -31,7 +31,7 @@
         position: relative;
         margin-bottom: 20px;
         display: flex;
-        flex-direction: column; // ✅ Asegura que el label esté arriba
+        flex-direction: column; 
   
         label {
           font-size: 14px;
@@ -57,11 +57,10 @@
         }
       }
   
-      // ✅ Ajuste para el campo de contraseña con icono
       .password-container {
         position: relative;
         display: flex;
-        flex-direction: column; // ✅ Mantiene el label arriba del input
+        flex-direction: column; 
         align-items: flex-start;
         width: 100%;
   
@@ -76,8 +75,8 @@
         }
   
         input {
-          width: 100%; // ✅ El input ocupará todo el ancho
-          padding-right: 45px; // ✅ Espacio para el ícono
+          width: 100%; 
+          padding-right: 45px; 
           padding-left: 10px;
           height: 40px;
           border: 1px solid #ccc;
@@ -90,7 +89,7 @@
           position: absolute;
           right: 10px;
           top: 50%;
-          transform: translateY(-15%); // ✅ Centra el ícono sin afectar el input
+          transform: translateY(-15%); 
           background: none;
           border: none;
           cursor: pointer;
