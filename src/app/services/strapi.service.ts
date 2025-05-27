@@ -2,15 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
-// Ajusta según tus necesidades de datos
 export interface Article {
   id?: number;
   title: string;
   content: string;
-  // etc.
 }
 
-// Estructura típica de Strapi: "data" y "meta"
 interface StrapiResponse<T> {
   data: { id: number; attributes: T }[];
   meta: any;
@@ -20,14 +17,10 @@ interface StrapiResponse<T> {
   providedIn: 'root'
 })
 export class StrapiService {
-  // Ajusta la URL base a tu endpoint de Strapi:
-  // Por defecto corre en http://localhost:1337
-  // y la colección "articles" en /api/articles
+
   private baseUrl = 'http://localhost:1337/api/articles';
 
-  // Si necesitas un token JWT de Strapi para peticiones autenticadas,
-  // podrías guardarlo aquí o en un servicio de Auth.
-  // private token = 'tu_token_jwt';
+
 
   constructor(private http: HttpClient) {}
 
@@ -61,11 +54,8 @@ export class StrapiService {
 
   // POST: Crear un nuevo artículo
   createArticle(article: Omit<Article, 'id'>): Observable<any> {
-    // La forma de enviar datos a Strapi es { data: { ... } } 
     const body = { data: article };
-    // Opcionalmente, si requieres auth, incluirías los headers con tu token:
-    // const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
-    // return this.http.post(this.baseUrl, body, { headers });
+
 
     return this.http.post(this.baseUrl, body);
   }
