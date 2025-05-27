@@ -6,14 +6,13 @@ export interface Ad {
   id?: number;
   title: string;
   description: string;
-  // etc...
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdvertisingService {
-  private baseUrl = 'http://localhost:8000/advertising'; // Ajusta al puerto que uses
+  private baseUrl = 'http://localhost:8000/advertising'; 
 
   constructor(private http: HttpClient) {}
 
