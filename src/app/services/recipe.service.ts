@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment'; // Ajusta la ruta según tu estructura de carpetas
+import { environment } from '../../environments/environment'; 
 
-// (Opcional) Define una interfaz para tus recetas
 export interface Recipe {
   recipe_id: number;
   category_id: number;
   title: string;
-  created_at: string;   // O 'Date' si quieres parsearlo
-  updated_at: string;   // O 'Date' si quieres parsearlo
+  created_at: string;   
+  updated_at: string;   
   cooking_time: number;
   food_type: string;
   total_portions: number;
@@ -43,7 +42,6 @@ export interface Ingredient {
   providedIn: 'root'
 })
 export class RecipeService {
-  // Ajusta esta URL según tu backend (puerto, subruta, etc.)
   private baseUrl = `${environment.recipeBaseUrl}`;
 
   constructor(private http: HttpClient) {} 
@@ -78,7 +76,6 @@ export class RecipeService {
     if (ingredient) {
       params = params.set('ingredient', ingredient);
     }
-    // El endpoint según OpenAPI es /recipes/search
     return this.http.get<Recipe[]>(`${this.baseUrl}/recipes/search`, { params });
    }
     getAllIngredients(): Observable<Ingredient[]> {
