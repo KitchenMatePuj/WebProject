@@ -12,7 +12,7 @@ import { RecipeService } from '../../services/recipe.service';
   providers: [RecipeService]
 })
 export class DetailsComponent implements OnInit {
-  recipe: any = null;  // ahora declaramos directamente la receta
+  recipe: any = null; 
   comments: any[] = [];
   steps: any[] = [];
   ingredients: any[] = [];
@@ -21,7 +21,7 @@ export class DetailsComponent implements OnInit {
 
 
   hovering = false;
-  currentSection = 'recipe'; // Sección actual (receta, comentarios, pasos, ingredientes)
+  currentSection = 'recipe'; 
 
   constructor(private router: Router, private recipeService: RecipeService) {
     const nav = this.router.getCurrentNavigation();
@@ -29,7 +29,6 @@ export class DetailsComponent implements OnInit {
       this.recipe = nav.extras.state['recipe'];
       console.log('Receta recibida en constructor:', this.recipe);
   
-      // 🔥 Ahora sí traemos los comentarios reales
       this.recipeService.getCommentsByRecipeId(this.recipe.recipe_id).subscribe({
         next: (data) => {
           this.comments = data;
@@ -45,7 +44,6 @@ export class DetailsComponent implements OnInit {
           this.steps = data;
           console.log('Pasos recibidos:', this.steps);
       
-          // 🔥 Concatenamos los pasos separados por saltos de línea <br>
           const descriptions = this.steps.map(step => step.description);
           this.recipe.description = descriptions.join('<br>');
         },
