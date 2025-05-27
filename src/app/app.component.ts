@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router'; // ✅ Importar RouterModule
-import { CommonModule } from '@angular/common'; // ✅ Importar NgIf
+import { Router, RouterModule } from '@angular/router'; 
+import { CommonModule } from '@angular/common'; 
 
 
 @Component({
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common'; // ✅ Importar NgIf
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [RouterModule, CommonModule] // ✅ Agregar NgIf y CommonModule
+  imports: [RouterModule, CommonModule] 
 })
 export class AppComponent {
   isLoginPage = false;
