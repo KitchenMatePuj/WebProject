@@ -78,7 +78,7 @@
             text-decoration: none;
             color: black;
             white-space: nowrap;
-            overflow: hidden; // evita mostrar texto recortado
+            overflow: hidden; 
 
             .sidebar-icon {
               width: 20px;
@@ -214,7 +214,7 @@
         overflow-x: auto;
 
         .ver-detalles {
-          color: #007bff; /* Un azul bonito */
+          color: #007bff; 
           cursor: pointer;
           text-decoration: none;
           transition: text-decoration 0.3s ease;
