@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Si necesitas redirigir al usuario
-import { CommonModule } from '@angular/common'; // CommonModule
+import { Router } from '@angular/router'; 
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-personalized-reports',
@@ -13,10 +13,8 @@ export class PersonalizedReportsComponent {
 
 
   logout() {
-    // Aquí puedes agregar la lógica de cierre de sesión
     console.log('Logging out...');
     
-    // Si necesitas redirigir al usuario a la página de inicio de sesión después del logout:
     this.router.navigate(['/login']);
   }
 
