@@ -30,7 +30,7 @@
   
     <!-- Contenido principal -->
     <main class="content" *ngIf="recipe">
-      <!-- 💡 Información general de la receta -->
+      <!-- Información general de la receta -->
       <section class="general-info">
         <div class="info-item">
           <strong>Tiempo de cocción</strong>
@@ -50,15 +50,15 @@
         </div>
       </section>
   
-      <!-- 💡 Título de la receta -->
+      <!-- Título de la receta -->
       <h1 class="recipe-title">{{ recipe.title }}</h1>
   
-      <!-- 💡 Nombre del usuario -->
+      <!-- Nombre del usuario -->
       <p class="author-name">Subido por: <strong>{{ recipe.author_name || 'Anónimo' }}</strong></p>
   
       <div class="results-separator"></div>
   
-      <!-- 💡 Ingredientes -->
+      <!-- Ingredientes -->
       <section class="ingredients-section">
         <h2>Ingredientes</h2>
       
@@ -76,7 +76,7 @@
   
       <div class="results-separator"></div>
   
-      <!-- 💡 Pasos -->
+      <!-- Pasos -->
       <section class="steps-section">
         <h2>Preparación paso a paso</h2>
         <ol *ngIf="steps.length > 0; else noSteps">
@@ -91,7 +91,7 @@
       </section>
       <div class="results-separator"></div>
 
-<!-- 💬 Comentarios -->
+<!-- Comentarios -->
 <section class="comments-section">
   <h2>Comentarios</h2>
 
