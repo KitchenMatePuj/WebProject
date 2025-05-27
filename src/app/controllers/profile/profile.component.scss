@@ -144,12 +144,12 @@
             border-radius: 5px;
             border: none;
             background-color: #f1f1f1;
-            pointer-events: none; /* Deshabilita la edición */
+            pointer-events: none;
           }
 
           input.editable,
           select.editable {
-            pointer-events: auto; /* Habilita la edición cuando se agrega la clase 'editable' */
+            pointer-events: auto; 
           }
         }
 
