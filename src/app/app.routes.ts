@@ -2,8 +2,8 @@ import { Routes } from '@angular/router';
 import { LoginViewComponent } from './controllers/auth/login-view/login-view.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DashboardComponent } from './controllers/dashboard/dashboard.component';
-import { ProfileComponent } from './controllers/profile/profile.component';  // Asegúrate de crear este componente
-import { SearchUsersComponent } from './controllers/search-users/search-users.component';  // Asegúrate de crear este componente
+import { ProfileComponent } from './controllers/profile/profile.component';  
+import { SearchUsersComponent } from './controllers/search-users/search-users.component'; 
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
