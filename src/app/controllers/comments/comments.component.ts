@@ -18,7 +18,6 @@ export class CommentsComponent implements OnInit {
   currentSection = 'comments';
   isSearchActive = true;
 
-  // Filtros (enlazados con [(ngModel)])
   filters = {
     author: '',
     status: '',
@@ -42,7 +41,6 @@ export class CommentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Como no existe un getAll, hacemos una búsqueda sin filtros
     this.reportService.searchReports().subscribe({
       next: (data: Report[]) => {
         this.originalResults = data;
@@ -67,7 +65,6 @@ export class CommentsComponent implements OnInit {
       this.filters.date
     ).subscribe({
       next: (data: Report[]) => {
-        // Aquí puedes filtrar localmente si también quieres aplicar por autor
         this.filteredResults = this.filters.author
           ? data.filter(r =>
               r.reporter_user_id
