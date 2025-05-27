@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Si necesitas redirigir al usuario
-import { CommonModule } from '@angular/common'; // CommonModule
+import { Router } from '@angular/router'; 
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Profile, ProfileService } from '../../services/profile.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,7 +9,7 @@ import { Ingredient, RecipeService } from '../../services/recipe.service';
 
 @Component({
   selector: 'app-search-users',
-  standalone: true,  // Definido como componente standalone
+  standalone: true,  
   templateUrl: './search-users.component.html',
   styleUrls: ['./search-users.component.scss'],
   imports: [CommonModule, FormsModule]
@@ -39,7 +39,6 @@ export class SearchUsersComponent {
 
   }
 
-      // Método opcional para limpiar los filtros y resultados
       clearFilters(): void {
         this.firstNameSearch = '';
         this.lastNameSearch = '';
@@ -51,7 +50,7 @@ export class SearchUsersComponent {
       }
 
   hovering = false; // Variable para controlar el hover
-  currentSection = 'search-users'; // lo actualizas al navegar
+  currentSection = 'search-users'; 
 
 
   searchUsers(): void {
@@ -106,10 +105,8 @@ export class SearchUsersComponent {
   }
 
   logout() {
-    // Aquí puedes agregar la lógica de cierre de sesión
     console.log('Logging out...');
     
-    // Si necesitas redirigir al usuario a la página de inicio de sesión después del logout:
     this.router.navigate(['/login']);
   }
 
