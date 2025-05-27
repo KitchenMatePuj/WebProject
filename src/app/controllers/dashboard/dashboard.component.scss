@@ -165,7 +165,7 @@
 
     .dashboard-cards {
       display: grid;
-      grid-template-columns: repeat(2, minmax(400px, 1fr)); // 🔹 2 columnas de mínimo 400px
+      grid-template-columns: repeat(2, minmax(400px, 1fr)); 
       gap: 24px;
       justify-content: center;
       align-items: start;
@@ -177,8 +177,8 @@
         padding: 20px;
         border-radius: 10px;
         width: 100%;
-        max-width: 520px; // ⬅️ incrementa el ancho de cada tarjeta
-        min-width: 460px; // 🔸 para evitar que se vuelvan delgadas
+        max-width: 520px;
+        min-width: 460px;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
     
         h3 {
