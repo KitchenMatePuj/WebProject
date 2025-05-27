@@ -4,7 +4,7 @@
   
     .sidebar {
       width: 250px;
-      background: #F1F1F1;  /* Color del sidebar */
+      background: #F1F1F1; 
       color: white;
       padding: 20px;
       display: flex;
@@ -33,7 +33,7 @@
       }
   
       .menu-container {
-        background-color: #ffffff;  /* Fondo blanco para el contenedor */
+        background-color: #ffffff; 
         border-radius: 10px;
         padding: 20px;
   
@@ -55,7 +55,7 @@
               padding: 10px;
               border-radius: 5px;
               transition: background 0.3s ease;
-              width: 100%; /* Asegura que los enlaces ocupen todo el espacio */
+              width: 100%; 
             }
   
             a:hover {
@@ -66,7 +66,7 @@
             .sidebar-icon {
               width: 20px;
               height: 20px;
-              margin-right: 15px; /* Más espacio entre la imagen y el texto */
+              margin-right: 15px; 
             }
           }
         }
@@ -150,7 +150,7 @@
             margin-bottom: 20px;
   
             th {
-              background-color: #f4f4f4; /* Fondo gris para los títulos de las columnas */
+              background-color: #f4f4f4; 
               font-weight: bold;
               padding: 12px;
               text-align: left;
@@ -158,7 +158,7 @@
             }
   
             td {
-              background-color: #ffffff; /* Fondo blanco para las filas de datos */
+              background-color: #ffffff; 
               padding: 12px;
               text-align: left;
               border-bottom: 1px solid #ddd;
